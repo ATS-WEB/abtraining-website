@@ -123,9 +123,12 @@ const stops = [
         cards.forEach((card, i) => {
           const distance = Math.abs(scaled - i);
           const opacity = Math.max(0, 1 - distance);
+          const copyOpacity = Math.max(0, 1 - distance * 2.6);
           card.style.opacity = String(opacity);
-          card.style.pointerEvents = opacity > 0.6 ? "auto" : "none";
+          card.style.pointerEvents = copyOpacity > 0.7 ? "auto" : "none";
           card.toggleAttribute("hidden", opacity < 0.04);
+          const copy = card.querySelector<HTMLElement>(".flight-copy");
+          if (copy) copy.style.opacity = String(copyOpacity);
           const image = card.querySelector("img");
           if (image) {
             const drift = scaled - i;
