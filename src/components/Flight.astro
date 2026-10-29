@@ -99,11 +99,6 @@ const stops = [
     const video = root.querySelector<HTMLVideoElement>(".flight-video");
 
     const show = (index: number) => {
-      cards.forEach((card, i) => {
-        const on = i === index;
-        card.classList.toggle("is-on", on);
-        card.toggleAttribute("hidden", !on);
-      });
       if (leg) {
         const title = cards[index]?.querySelector("h2")?.textContent ?? "";
         leg.textContent = `Leg ${index + 1} of ${cards.length}. ${title}`;
@@ -122,20 +117,26 @@ const stops = [
         const total = root.offsetHeight - window.innerHeight;
         const y = Math.min(Math.max(-root.getBoundingClientRect().top, 0), Math.max(total, 1));
         const progress = total > 0 ? y / total : 0;
-        const scaled = progress * cards.length;
-        const index = Math.min(cards.length - 1, Math.floor(scaled));
-        const local = scaled - index;
+        const scaled = progress * (cards.length - 1);
+        const index = Math.min(cards.length - 1, Math.round(scaled));
         show(index);
-        const active = cards[index];
-        const image = active?.querySelector("img");
-        if (image) {
-          image.style.transform = `scale(${1.12 - local * 0.08})`;
-        }
-        if (video && index === 0 && video.readyState >= 1 && Number.isFinite(video.duration)) {
-          const target = Math.min(video.duration - 0.05, local * video.duration);
+        cards.forEach((card, i) => {
+          const distance = Math.abs(scaled - i);
+          const opacity = Math.max(0, 1 - distance);
+          card.style.opacity = String(opacity);
+          card.style.pointerEvents = opacity > 0.6 ? "auto" : "none";
+          card.toggleAttribute("hidden", opacity < 0.04);
+          const image = card.querySelector("img");
+          if (image) {
+            const drift = scaled - i;
+            image.style.transform = `scale(${1.08 + (1 - Math.min(distance, 1)) * 0.1}) translate3d(0, ${drift * -6}%, 0)`;
+          }
+        });
+        if (video && scaled < 1 && video.readyState >= 1 && Number.isFinite(video.duration)) {
+          const target = Math.min(video.duration - 0.05, scaled * video.duration);
           if (Math.abs(video.currentTime - target) > 0.12) video.currentTime = target;
         }
-        if (video) video.style.opacity = index === 0 ? "1" : "0";
+        if (video) video.style.opacity = scaled < 1 ? String(1 - scaled) : "0";
         ticking = false;
       };
       const onScroll = () => {

@@ -72,7 +72,6 @@
   opacity: 0;
   pointer-events: none;
 }
-.flight[data-mode="live"] .flight-card.is-on { opacity: 1; pointer-events: auto; }
 .flight[data-mode="live"] .flight-video {
   display: block;
   position: absolute;
