@@ -17,7 +17,7 @@ export function organizationSchema(): Record<string, unknown> {
   if (business.streetAddress.trim()) address.streetAddress = business.streetAddress.trim();
   if (business.postalCode.trim()) address.postalCode = business.postalCode.trim();
 
-  const sameAs = [business.facebook, business.linkedin].filter(Boolean);
+  const sameAs = [business.facebook, business.linkedin, business.partnerUrl].filter(Boolean);
 
   return {
     "@context": "https://schema.org",

@@ -100,4 +100,11 @@ The repository must use GitHub Actions as the Pages source (Settings → Pages �
 
 Every page has its own title, meta description, canonical URL, and Open Graph tags. The home page includes LocalBusiness and EducationalOrganization structured data. Each course page includes Course structured data. `sitemap.xml` and `robots.txt` are generated at build time.
 
-Search for `TODO(owner)` in `src/data/courses.ts` and `src/config/site.ts` before treating prices, dates, the street address, or the inbox as final.
+Search for `TODO(owner)` in `src/data/courses.ts` and `src/config/site.ts` before treating prices, dates, or contact lines as final.
+
+The home page reserves two slots the owner fills:
+
+- `landAcknowledgement` in `src/config/site.ts` (also shown on Indigenous relations). Leave it empty until the company’s own wording is ready.
+- The artwork frame on the home page (`#artwork`). Do not drop in Nation-specific art from the portfolio backgrounds. Add an approved file under `public/media/` when you have one.
+
+Official positioning, the ATS and HK partnership, addresses, and the 500+ / 25+ / 100% Indigenous-owned lines come from the ATS & HK brochure and portfolio.

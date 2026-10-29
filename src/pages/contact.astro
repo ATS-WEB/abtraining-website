@@ -1,10 +1,10 @@
 ---
 import Base from "../layouts/Base.astro";
-import { addressLines, business, mapsHref } from "../config/site";
+import { business, locations, mapsHref, phones } from "../config/site";
 import { courses } from "../data/courses";
 
 const description =
-  "Contact Aboriginal Training Services in Edmonton. Call, email, or send a course enquiry. Phone +1 (587) 524-0275, darcy@abtraining.ca.";
+  "Contact Aboriginal Training Services in Edmonton and HK Drone Service in Maskwacis. Call +1 (403) 615-8083 or +1 (587) 524-0275, or email darcy@abtraining.ca.";
 ---
 
 <Base title="Contact Aboriginal Training Services" description={description} path="/contact/">
@@ -12,23 +12,38 @@ const description =
     <div class="wrap">
       <h1>Contact</h1>
       <p class="lead">
-        Ask about a course, a date, or training for your community or organization. We reply by
-        email or phone.
+        Book a free consultation, ask about a course date, or talk through a First Nation or group
+        program. Discounts are available for group, organization, and capacity-building work.
       </p>
     </div>
   </section>
   <section class="section" style="padding-top:1rem">
     <div class="wrap contact-grid">
       <div class="contact-card">
-        <h2>Edmonton office</h2>
+        <h2>Edmonton and Maskwacis</h2>
+        <ul>
+          {
+            locations.map((place) => (
+              <li>
+                <a href={mapsHref(place.maps)}>
+                  {place.name}: {place.detail}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+        <ul>
+          {
+            phones.map((phone) => (
+              <li>
+                <a href={`tel:${phone.tel}`}>{phone.display}</a>
+              </li>
+            ))
+          }
+        </ul>
         <p>
-          <a href={mapsHref()}>{addressLines().join(", ")}</a>
-        </p>
-        <p>
-          <a href={`tel:${business.phoneTel}`}>{business.phoneDisplay}</a>
-        </p>
-        <p>
-          <a href={`mailto:${business.email}`}>{business.email}</a>
+          <a href={`mailto:${business.email}`}>{business.email}</a><br />
+          <a href={`mailto:${business.partnerEmail}`}>{business.partnerEmail}</a>
         </p>
         <p>
           Prefer to write directly? Email
