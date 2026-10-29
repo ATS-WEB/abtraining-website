@@ -1,0 +1,56 @@
+---
+import "@fontsource/newsreader/latin-600.css";
+import "@fontsource/dm-sans/latin-400.css";
+import "../../../styles/concept-b.css";
+import Concept from "../../../layouts/Concept.astro";
+import Switch from "../../../components/concepts/Switch.astro";
+import { courses } from "../../../data/courses";
+import { asset, page } from "../../../lib/urls";
+---
+
+<Concept
+  klass="concept-b"
+  title="Concept B training header | Aboriginal Training Services"
+  description="Keepers of the Land training header concept."
+>
+  <header class="b-bar">
+    <a href={page("/concepts/b/")} style="color:#fff;text-decoration:none">
+      <strong>Aboriginal Training Services</strong>
+      <span>Keepers of the Land</span>
+    </a>
+    <nav aria-label="Concept B">
+      <a href={page("/concepts/b/training/")} aria-current="page">Training</a>
+      <a href={page("/contact/")}>Contact</a>
+    </nav>
+  </header>
+  <main id="main">
+    <header class="b-train">
+      <img
+        src={asset("/media/community-crew.webp")}
+        alt="A training group with a mapping drone"
+        width="1100"
+        height="514"
+      />
+      <div class="veil" aria-hidden="true"></div>
+      <div class="cap">
+        <p class="eye">100% Indigenous owned and operated · Maskwacis and Edmonton</p>
+        <h1>Training</h1>
+      </div>
+    </header>
+    <section class="b-links">
+      <ul>
+        {
+          courses.slice(0, 6).map((course) => (
+            <li>
+              <a href={page(`/training/${course.slug}/`)}>
+                {course.name} <span>{course.duration}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <p><a href={page("/training/")}>Full catalog on the current site</a></p>
+    </section>
+    <Switch current="b" />
+  </main>
+</Concept>

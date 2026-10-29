@@ -1,0 +1,86 @@
+---
+import "@fontsource/syne/latin-700.css";
+import "@fontsource/syne/latin-800.css";
+import "@fontsource/dm-sans/latin-400.css";
+import "../../../styles/concept-c.css";
+import Concept from "../../../layouts/Concept.astro";
+import Reel from "../../../components/concepts/Reel.astro";
+import Switch from "../../../components/concepts/Switch.astro";
+import { asset, page } from "../../../lib/urls";
+---
+
+<Concept
+  klass="concept-c"
+  title="Concept C · Future Pathway | Aboriginal Training Services"
+  description="Design concept: a high-contrast aerospace pathway from ground school to KISIK."
+>
+  <header class="c-bar">
+    <a class="c-mark" href={page("/concepts/c/")}>ATS / HK</a>
+    <nav class="c-nav" aria-label="Concept C">
+      <a href={page("/concepts/c/training/")}>Training</a>
+      <a href={page("/contact/")}>Contact</a>
+    </nav>
+  </header>
+  <main id="main">
+    <header class="c-hero">
+      <p class="eye">100% Indigenous owned · Leading RPAS academy</p>
+      <h1>
+        <span>Future</span>
+        <span>pathway.</span>
+      </h1>
+      <div class="c-thrust" aria-hidden="true"></div>
+    </header>
+    <nav class="c-steps" aria-label="Training pathway">
+      <a class="c-step" href={page("/training/drone-pilot-certificate-basic-online/")}>
+        <em>01</em>
+        <span>
+          <b>Ground</b>
+          <small>Transport Canada Basic and Advanced. Start online.</small>
+        </span>
+        <img src={asset("/media/ground-school.webp")} alt="" width="1100" height="619" />
+      </a>
+      <a class="c-step" href={page("/training/flight-review-advanced-and-complex/")}>
+        <em>02</em>
+        <span>
+          <b>Review</b>
+          <small>In-person flight review. Edmonton and Maskwacis.</small>
+        </span>
+        <img src={asset("/media/flight-line.webp")} alt="" width="800" height="600" />
+      </a>
+      <a class="c-step" href={page("/training/rpas-lidar/")}>
+        <em>03</em>
+        <span>
+          <b>Applied</b>
+          <small>Survey, LiDAR, methane. Skills that stay in the community.</small>
+        </span>
+        <img src={asset("/media/aerial-river.webp")} alt="" width="1400" height="788" />
+      </a>
+    </nav>
+    <div class="reel-window">
+      <Reel />
+    </div>
+    <section class="c-spec" aria-label="KISIK aircraft from the company portfolio">
+      <div>
+        <span>KISIK · endurance</span>
+        <strong>3 hr</strong>
+      </div>
+      <div>
+        <span>Range</span>
+        <strong>200 km</strong>
+      </div>
+      <div>
+        <span>Built</span>
+        <strong>Canada</strong>
+      </div>
+    </section>
+    <p class="c-note">
+      Indigenous-led research for environmental stewardship. HK Drone Service, 100% Indigenous owned. A photograph of the airframe is still to come.
+    </p>
+    <footer class="c-foot">
+      <span>Concept C · not the live home</span>
+      <a href={page("/concepts/c/training/")}>Training header</a>
+      <a href={page("/contact/")}>Free consultation</a>
+    </footer>
+    <Switch current="c" />
+  </main>
+</Concept>

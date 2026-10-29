@@ -1,0 +1,323 @@
+---
+import { getCollection } from "astro:content";
+import CourseCard from "../components/CourseCard.astro";
+import Base from "../layouts/Base.astro";
+import { business, portfolioPartners, publishedStats } from "../config/site";
+import { courses } from "../data/courses";
+import { reviews } from "../data/reviews";
+import { formatIsoDate } from "../lib/courses";
+import { asset, page } from "../lib/urls";
+
+const online = courses.filter((course) => course.checkoutUrl);
+const posts = (await getCollection("blog")).sort((a, b) =>
+  a.data.date < b.data.date ? 1 : -1,
+);
+const description =
+  "Leading Indigenous drone (RPAS) academy in Edmonton. 100% Indigenous owned and operated, with HK Drone Service. Ground school, flight review, and applied training.";
+---
+
+<Base
+  title="Aboriginal Training Services | Leading Indigenous Drone Academy"
+  description={description}
+  path="/"
+>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Edmonton and Maskwacis · {business.positioning}</p>
+        <h1>Indigenous people and communities, leading the drone industry.</h1>
+        <p class="lead">
+          {business.legalName} is a 100% Indigenous owned and operated academy, in partnership
+          with {business.partnerName}. {business.tagline}.
+        </p>
+        <div class="actions">
+          <a class="btn btn-copper" href={page("/training/")}>Enter the academy</a>
+          <a class="btn btn-on-dark" href={page("/contact/")}>Book a free consultation</a>
+        </div>
+        <div class="partner-row">
+          <img src={asset("/brand/logo.webp")} alt="Aboriginal Training Services" width="168" height="54" />
+          <img class="hk-logo" src={asset("/brand/hk-logo.webp")} alt="HK Drone Service, 100% Indigenous owned" width="148" height="57" />
+        </div>
+      </div>
+      <figure class="hero-photo">
+        <img
+          src={asset("/media/field-winter.webp")}
+          alt="Students and instructors preparing a multirotor on a winter prairie field"
+          width="1200"
+          height="900"
+          fetchpriority="high"
+        />
+        <figcaption>Field training with Aboriginal Training Services.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <ul class="stats">
+      {
+        publishedStats.map((stat) => (
+          <li class="stat">
+            <b>{stat.value}</b>
+            <span>{stat.label}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <section class="section" id="pathway">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>A pathway from the ground to the work</h2>
+        <p>
+          Ground school, then a flight review, then the sensors communities use to watch the land.
+          After that, careers and services with {business.partnerName}.
+        </p>
+      </div>
+      <ol class="pathway">
+        <li>
+          <span class="num">01 · Ground school</span>
+          <h3>Transport Canada certificates</h3>
+          <p>Basic and Advanced exam preparation online. Level 1 Complex in person.</p>
+          <a href={page("/training/drone-pilot-certificate-basic-online/")}>Start with Basic</a>
+        </li>
+        <li>
+          <span class="num">02 · Flight review</span>
+          <h3>Show you can fly</h3>
+          <p>In-person flight reviews for Advanced and Complex certificates. Aircraft can be provided.</p>
+          <a href={page("/training/flight-review-advanced-and-complex/")}>Flight review</a>
+        </li>
+        <li>
+          <span class="num">03 · Applied skills</span>
+          <h3>Survey, LiDAR, methane</h3>
+          <p>
+            Mapping, LiDAR, environmental monitoring, greenhouse gas and methane, search and rescue,
+            inspection, water sampling, and agriculture.
+          </p>
+          <a href={page("/training/")}>Application courses</a>
+        </li>
+        <li>
+          <span class="num">04 · Careers and Nations</span>
+          <h3>Capacity that stays home</h3>
+          <p>
+            Apprenticeship, project-based, corporate, First Nation, and net-zero programs, plus
+            drone services from the HK partnership.
+          </p>
+          <a href={page("/services/#communities")}>Community programs</a>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Keepers of the land, the data, and the environment</h2>
+        <p>As the company puts it: we map it, we protect it, and we prepare the next generation.</p>
+      </div>
+      <div class="keepers">
+        <article class="keeper">
+          <h3>Keepers of the Land</h3>
+          <p>Data for decision-makers: resource management, environmental monitoring, and forestry.</p>
+        </article>
+        <article class="keeper">
+          <h3>Keepers of the Data</h3>
+          <p>Mapping for insight: detailed 3D models and 2D maps communities can use.</p>
+        </article>
+        <article class="keeper">
+          <h3>Keepers of the Environment</h3>
+          <p>
+            Monitoring wildlife habitat, erosion, and environmental change, and supporting
+            regulatory compliance.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap two-col">
+      <div>
+        <p class="eyebrow">ATS and HK Drone Service</p>
+        <h2>One Indigenous-owned academy and drone company.</h2>
+        <p>
+          The portfolio presents Aboriginal Training Services and HK Drone Service together: a
+          leading RPAS academy and drone solutions company, 100% Indigenous owned. HK Drone Service
+          is also marked 100% Indigenous owned.
+        </p>
+        <p>
+          <a href={business.partnerUrl}>hkdroneservice.com</a>
+          · <a href={`mailto:${business.partnerEmail}`}>{business.partnerEmail}</a>
+        </p>
+        <p>
+          <a class="btn btn-on-dark" href={page("/services/#operations")}>See drone services</a>
+        </p>
+      </div>
+      <figure class="hero-photo">
+        <img
+          src={asset("/media/hk-crew.webp")}
+          alt="HK Drone Service crew standing with a heavy-lift multirotor beside a field trailer"
+          width="600"
+          height="450"
+          loading="lazy"
+        />
+        <figcaption>HK Drone Service in the field. From the company brochure.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Ground school you can start now</h2>
+        <p>
+          Basic and Advanced online courses check out on Thinkific in US dollars until a Canadian
+          price is confirmed. Every other course has a working enquiry.
+        </p>
+      </div>
+      <div class="course-grid">
+        {online.map((course) => <CourseCard course={course} heading="h3" />)}
+      </div>
+      <p style="margin-top:1.2rem">
+        <a class="btn btn-secondary" href={page("/training/")}>All {courses.length} courses</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap photo-grid two">
+      <figure>
+        <img
+          src={asset("/media/ground-school.webp")}
+          alt="An instructor teaching an RPAS ground school class in a classroom"
+          width="1100"
+          height="619"
+          loading="lazy"
+        />
+        <figcaption>Ground school. From the company portfolio.</figcaption>
+      </figure>
+      <figure>
+        <img
+          src={asset("/media/community-crew.webp")}
+          alt="A training group posed with a large mapping drone on the grass"
+          width="1100"
+          height="514"
+          loading="lazy"
+        />
+        <figcaption>Hands-on training with the aircraft. From the company portfolio.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>What students wrote on Google</h2>
+        <p>
+          Rated {business.googleRating} from {business.googleReviewCount} Google reviews. These
+          quotes are from the previous website.
+        </p>
+      </div>
+      <div class="quote-grid">
+        {
+          reviews.map((review) => (
+            <figure class="quote">
+              <blockquote>
+                <p>{review.quote}</p>
+              </blockquote>
+              <figcaption>
+                <cite>{review.name}</cite>
+                — {review.when}
+              </figcaption>
+            </figure>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0" id="land-acknowledgement">
+    <div class="wrap two-col">
+      <div class="ack-slot">
+        <p class="eyebrow">Land acknowledgement</p>
+        <h2>Reserved for the company’s own words</h2>
+        {
+          business.landAcknowledgement ? (
+            <p>{business.landAcknowledgement}</p>
+          ) : (
+            <p>
+              Aboriginal Training Services has not supplied a land acknowledgement for this page
+              yet. This space stays empty until that wording is added. It will not be drafted here.
+            </p>
+          )
+        }
+      </div>
+      <div class="art-slot" id="artwork">
+        <p class="eyebrow">Artwork</p>
+        <h2>Reserved for an artist or the company profile</h2>
+        <div
+          class="art-frame"
+          role="img"
+          aria-label="Empty frame reserved for artwork supplied by Aboriginal Training Services"
+        >
+        </div>
+        <p class="fine">
+          Nation-specific symbols and artwork from the portfolio backgrounds are not reused here.
+          Replace this frame with work the owner approves.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Partnerships named in the portfolio</h2>
+        <p>
+          The ATS and HK portfolio lists these organizations. The site does not add a description
+          of each relationship.
+        </p>
+      </div>
+      <ul class="chip-row">
+        {portfolioPartners.map((name) => <li class="chip">{name}</li>)}
+      </ul>
+      <p>
+        <a href={page("/blog/flying-higher-ats-nait-partnership/")}>Read the NAIT partnership note</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>From the academy</h2>
+        <a href={page("/blog/")}>All stories</a>
+      </div>
+      <div class="post-grid">
+        {
+          posts.slice(0, 3).map((post) => (
+            <article class="post-card">
+              <time datetime={post.data.date}>{formatIsoDate(post.data.date)}</time>
+              <h3>
+                <a href={page(`/blog/${post.id}/`)}>{post.data.title}</a>
+              </h3>
+              <p>{post.data.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="wrap">
+      <p class="eyebrow">Training for the future</p>
+      <h2>Mapping the land. Protecting the environment.</h2>
+      <p>Book a free consultation. Group, organization, and First Nation programs can be discounted.</p>
+      <div class="actions">
+        <a class="btn btn-copper" href={page("/contact/")}>Book a free consultation</a>
+        <a class="btn btn-on-dark" href={page("/training/")}>See the courses</a>
+      </div>
+    </div>
+  </section>
+</Base>

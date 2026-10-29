@@ -1,0 +1,45 @@
+---
+import { asset } from "../lib/urls";
+
+interface Props {
+  title: string;
+  description: string;
+  klass: string;
+}
+
+const { title, description, klass } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en-CA" class={klass}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#05070c" />
+    <link rel="icon" href={asset("/favicon.png")} type="image/png" />
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  .skip {
+    position: absolute;
+    left: 0.75rem;
+    top: -4rem;
+    z-index: 80;
+    background: #fff;
+    color: #111;
+    padding: 0.6rem 0.9rem;
+    font-weight: 700;
+  }
+  .skip:focus {
+    top: 0.75rem;
+  }
+</style>

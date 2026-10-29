@@ -1,0 +1,22 @@
+---
+import Base from "../layouts/Base.astro";
+import { page } from "../lib/urls";
+---
+
+<Base
+  title="Page not found"
+  description="That page is not on the Aboriginal Training Services website."
+  path="/404/"
+  noindex={true}
+>
+  <section class="page-intro">
+    <div class="wrap">
+      <h1>Page not found</h1>
+      <p class="lead">That address is not on this site. Try the course list or the home page.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href={page("/")}>Home</a>
+        <a class="btn btn-secondary" href={page("/training/")}>Training courses</a>
+      </div>
+    </div>
+  </section>
+</Base>

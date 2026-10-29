@@ -1,0 +1,100 @@
+---
+import Base from "../layouts/Base.astro";
+import { business } from "../config/site";
+import { page } from "../lib/urls";
+
+const description =
+  "How Aboriginal Training Services and HK Drone Service talk about land, data, and the environment, and how drone training serves Indigenous communities.";
+---
+
+<Base title="Indigenous Relations" description={description} path="/indigenous-relations/">
+  <section class="page-intro">
+    <div class="wrap prose">
+      <p class="eyebrow">Indigenous-led</p>
+      <h1>Technology in service of the land</h1>
+      <p class="lead">
+        {business.tagline}. The companies describe the work as Indigenous-led sustainable drone
+        practice: mapping the land and protecting the environment.
+      </p>
+      <p>
+        “We are keepers of the land using modern tools to fulfill our responsibility.”
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0.4rem">
+    <div class="wrap keepers">
+      <article class="keeper">
+        <h2>Keepers of the Land</h2>
+        <p>Provide data for decision-makers: resource management, environmental monitoring, and forestry.</p>
+      </article>
+      <article class="keeper">
+        <h2>Keepers of the Data</h2>
+        <p>Mapping for insight, including 3D models and 2D maps.</p>
+      </article>
+      <article class="keeper">
+        <h2>Keepers of the Environment</h2>
+        <p>
+          Protecting through mapping: wildlife habitat, erosion, environmental change, regulatory
+          compliance, and land and environmental stewardship.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap prose">
+      <h2>Where the portfolio says the work is going</h2>
+      <ul>
+        <li>Building a future workforce through drone training programs.</li>
+        <li>Training Indigenous communities to lead a green-energy future.</li>
+        <li>Bringing people and technology together while protecting the environment.</li>
+        <li>Supporting Indigenous people to champion clean technology.</li>
+      </ul>
+      <p>
+        The same deck frames a skills gap: Transport Canada certification is required for commercial
+        use, and it names missed chances in land consultation, emergency response, and environmental
+        monitoring. It calls drones a reconciliation tool for Treaty rights and self-determination.
+        That is the company’s wording, not a claim added here.
+      </p>
+      <h2>How training reaches communities</h2>
+      <p>
+        The brochure says the ground school has trained 500+ students across Indigenous communities
+        and government, commercial, and industrial sectors. The portfolio says 25+ Indigenous
+        communities have been served across Canada, with First Nations service agreements.
+      </p>
+      <p>
+        Custom paths include First Nation training programs, First Nation service agreements, and
+        capacity building. Discounts are offered for those programs.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="land-acknowledgement" style="padding-top:0">
+    <div class="wrap ack-slot">
+      <h2>Land acknowledgement</h2>
+      {
+        business.landAcknowledgement ? (
+          <p>{business.landAcknowledgement}</p>
+        ) : (
+          <p>
+            A land acknowledgement is not printed in the brochure or portfolio supplied for this
+            site. This block is reserved for the wording Aboriginal Training Services chooses to
+            publish. No acknowledgement has been written in its place.
+          </p>
+        )
+      }
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="wrap">
+      <h2>Talk about training on your territory</h2>
+      <p>First Nation service agreements and capacity-building programs start with a conversation.</p>
+      <div class="actions">
+        <a class="btn btn-copper" href={page("/contact/")}>Start a conversation</a>
+        <a class="btn btn-on-dark" href={page("/training/")}>Explore training</a>
+      </div>
+    </div>
+  </section>
+</Base>

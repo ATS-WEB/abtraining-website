@@ -1,0 +1,167 @@
+---
+import Base from "../../layouts/Base.astro";
+import { courses } from "../../data/courses";
+import {
+  dateLabel,
+  enquiryPath,
+  durationLabel,
+  formatLabel,
+  priceLabel,
+  registerHref,
+  summary,
+} from "../../lib/courses";
+import { breadcrumbSchema, courseSchema } from "../../lib/schema";
+import { page } from "../../lib/urls";
+
+export function getStaticPaths() {
+  return courses.map((course) => ({
+    params: { slug: course.slug },
+    props: { course },
+  }));
+}
+
+const { course } = Astro.props;
+const price = priceLabel(course);
+const dates = dateLabel(course);
+const external = Boolean(course.checkoutUrl);
+const askHref = page(enquiryPath(course.slug));
+const description = summary(course, 155);
+---
+
+<Base
+  title={course.name}
+  description={description}
+  path={`/training/${course.slug}/`}
+  jsonLd={[
+    courseSchema(course),
+    breadcrumbSchema([
+      { name: "Home", path: "/" },
+      { name: "Training", path: "/training/" },
+      { name: course.name, path: `/training/${course.slug}/` },
+    ]),
+  ]}
+>
+  <article class="section">
+    <div class="wrap">
+      <div class="detail-top">
+        <header>
+          <nav aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+              <li><a href={page("/")}>Home</a></li>
+              <li aria-hidden="true">/</li>
+              <li><a href={page("/training/")}>Training</a></li>
+              <li aria-hidden="true">/</li>
+              <li aria-current="page">{course.name}</li>
+            </ol>
+          </nav>
+          <div class="chip-row">
+            <span class:list={["chip", course.type === "Regulation" ? "chip-reg" : "chip-app"]}>
+              {course.type}
+            </span>
+            <span class="chip">{formatLabel(course)}</span>
+            <span class="chip">{course.level}</span>
+          </div>
+          <h1>{course.name}</h1>
+        </header>
+        <aside class="buybox" aria-label="Enrolment">
+          <p class="price">
+            {
+              price.mode === "ask" ? (
+                <a href={askHref}>{price.text}</a>
+              ) : (
+                price.text
+              )
+            }
+          </p>
+          {
+            price.mode === "usd" && (
+              <p class="fine">
+                Checkout is currently in US dollars. A Canadian dollar price is not listed here
+                until it is confirmed.
+              </p>
+            )
+          }
+          <dl>
+            <dt>When</dt>
+            <dd>
+              {
+                dates.known ? (
+                  dates.text
+                ) : (
+                  <a href={askHref}>{dates.text}</a>
+                )
+              }
+            </dd>
+            <dt>Length</dt>
+            <dd>{durationLabel(course)}</dd>
+            <dt>Format</dt>
+            <dd>{formatLabel(course)}</dd>
+            {
+              course.maxStudents != null && (
+                <>
+                  <dt>Class size</dt>
+                  <dd>Up to {course.maxStudents} students</dd>
+                </>
+              )
+            }
+          </dl>
+          <div class="stack">
+            <a class="btn btn-primary" href={registerHref(course)}>
+              {external ? "Register" : "Enquire about this course"}
+              {external && <span class="sr-only"> — opens Thinkific checkout</span>}
+            </a>
+            {
+              external && (
+                <a class="btn btn-secondary" href={askHref}>
+                  Ask a question first
+                </a>
+              )
+            }
+          </div>
+        </aside>
+      </div>
+
+      <div class="prose" style="margin-top:2rem">
+        <p class="lead">{course.description}</p>
+        <h2>What’s included</h2>
+        <ul class="checklist">
+          {course.included.map((item) => <li>{item}</li>)}
+        </ul>
+        {
+          course.exam && (
+            <>
+              <h2>Exam this course prepares you for</h2>
+              <p>
+                The course record lists {course.exam.questions} questions and a {course.exam.minutes}
+                -minute time limit. Transport Canada sets the official exam.
+              </p>
+            </>
+          )
+        }
+        <h2>Requirements</h2>
+      </div>
+      <dl class="req-grid" style="margin-top:0.8rem">
+        <div>
+          <dt>Age</dt>
+          <dd>{course.ageRequirement}</dd>
+        </div>
+        <div>
+          <dt>Experience</dt>
+          <dd>{course.experienceRequirement}</dd>
+        </div>
+        <div>
+          <dt>Equipment</dt>
+          <dd>{course.equipmentRequirement}</dd>
+        </div>
+        <div>
+          <dt>Documents</dt>
+          <dd>{course.documentRequirement}</dd>
+        </div>
+        <div>
+          <dt>Suggested preparation</dt>
+          <dd>{course.suggestedPreparation}</dd>
+        </div>
+      </dl>
+    </div>
+  </article>
+</Base>

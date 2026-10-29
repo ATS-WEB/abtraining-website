@@ -1,0 +1,65 @@
+---
+import { business } from "../config/site";
+import { asset, page } from "../lib/urls";
+
+const links = [
+  ["/training/", "Training"],
+  ["/services/", "Services"],
+  ["/indigenous-relations/", "Indigenous Relations"],
+  ["/about/", "About"],
+  ["/blog/", "Blog"],
+  ["/contact/", "Contact"],
+] as const;
+
+const current = Astro.url.pathname;
+
+function isCurrent(href: string): boolean {
+  const target = page(href);
+  if (href === "/") return current === target;
+  return current === target || current.startsWith(target);
+}
+---
+
+<div class="utility">
+  <div class="utility-inner">
+    <a href={`tel:${business.phoneTel}`}>{business.phoneDisplay}</a>
+    <a href={`mailto:${business.email}`}>{business.email}</a>
+    <span class="utility-tagline">{business.tagline}</span>
+  </div>
+</div>
+<header class="site-header">
+  <div class="header-bar">
+    <a class="logo-link" href={page("/")}>
+      <img
+        class="logo"
+        src={asset("/brand/logo.webp")}
+        alt="Aboriginal Training Services"
+        width="420"
+        height="135"
+      />
+    </a>
+    <nav class="nav-desktop" aria-label="Primary">
+      {
+        links.map(([href, label]) => (
+          <a class="nav-link" href={page(href)} aria-current={isCurrent(href) ? "page" : undefined}>
+            {label}
+          </a>
+        ))
+      }
+      <a class="nav-link" href={business.studentPortal}>Student sign in</a>
+    </nav>
+    <details class="nav-details">
+      <summary class="nav-summary">Menu</summary>
+      <nav class="nav-panel" aria-label="Primary">
+        {
+          links.map(([href, label]) => (
+            <a class="nav-link" href={page(href)} aria-current={isCurrent(href) ? "page" : undefined}>
+              {label}
+            </a>
+          ))
+        }
+        <a class="nav-link" href={business.studentPortal}>Student sign in</a>
+      </nav>
+    </details>
+  </div>
+</header>

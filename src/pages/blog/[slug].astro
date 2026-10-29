@@ -1,0 +1,52 @@
+---
+import { getCollection, render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import { formatIsoDate } from "../../lib/courses";
+import { breadcrumbSchema } from "../../lib/schema";
+import { page } from "../../lib/urls";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Base
+  title={post.data.title}
+  description={post.data.description}
+  path={`/blog/${post.id}/`}
+  jsonLd={[
+    breadcrumbSchema([
+      { name: "Home", path: "/" },
+      { name: "Blog", path: "/blog/" },
+      { name: post.data.title, path: `/blog/${post.id}/` },
+    ]),
+  ]}
+>
+  <article class="section">
+    <div class="wrap prose">
+      <nav aria-label="Breadcrumb">
+        <ol class="breadcrumb">
+          <li><a href={page("/")}>Home</a></li>
+          <li aria-hidden="true">/</li>
+          <li><a href={page("/blog/")}>Blog</a></li>
+        </ol>
+      </nav>
+      <p class="eyebrow">Story</p>
+      <h1>{post.data.title}</h1>
+      <p>
+        <time datetime={post.data.date}>{formatIsoDate(post.data.date)}</time>
+      </p>
+      <Content />
+      <p>
+        <a href={page("/contact/")}>Talk to us about training</a>
+      </p>
+    </div>
+  </article>
+</Base>

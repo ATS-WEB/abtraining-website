@@ -1,0 +1,132 @@
+---
+import Base from "../layouts/Base.astro";
+import { business, portfolioPartners, publishedStats } from "../config/site";
+import { asset, page } from "../lib/urls";
+
+const description =
+  "Aboriginal Training Services is a 100% Indigenous owned and operated RPAS academy in Edmonton, in partnership with HK Drone Service.";
+---
+
+<Base title="About the Academy" description={description} path="/about/">
+  <section class="page-intro">
+    <div class="wrap prose">
+      <p class="eyebrow">{business.positioning}</p>
+      <h1>About Aboriginal Training Services and HK Drone Service</h1>
+      <p class="lead">
+        We are a 100% Indigenous owned and operated business. The portfolio calls the two companies
+        together a leading Indigenous aerospace company: the leaders and champions of RPAS
+        technology and innovation.
+      </p>
+      <p>
+        Advocate, encourage, and unite Indigenous people and communities to lead the drone industry.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0.5rem">
+    <div class="wrap">
+      <ul class="stats">
+        {
+          publishedStats.map((stat) => (
+            <li class="stat">
+              <b>{stat.value}</b>
+              <span>{stat.label}</span>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="fine" style="margin-top:0.8rem">
+        500+ students and 25+ Indigenous communities are from the ATS and HK brochure and portfolio.
+        The Google rating on the home page, {business.googleRating} from {business.googleReviewCount}
+        reviews, comes from the previous website.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap photo-grid two">
+      <figure>
+        <img
+          src={asset("/media/classroom-crew.webp")}
+          alt="RPAS regulation training group in a classroom, with a slide prepared for the Indian Resource Council of Canada"
+          width="1100"
+          height="514"
+          loading="lazy"
+        />
+        <figcaption>Regulation training. The slide in the room was prepared for the Indian Resource Council of Canada.</figcaption>
+      </figure>
+      <figure>
+        <img
+          src={asset("/media/flight-line.webp")}
+          alt="Pilots with controllers beside a multirotor on a marked pad"
+          width="800"
+          height="600"
+          loading="lazy"
+        />
+        <figcaption>Flight line practice outside the academy. From the brochure.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap value-grid">
+      <article class="value-card">
+        <h2>Vision</h2>
+        <p>
+          Within Indigenous communities, create leaders, innovators, entrepreneurs, and strong youth.
+          Lead the Canadian RPAS industry while preparing Indigenous entrepreneurs. The portfolio
+          also names large aviation, renewable, and clean technology corporations, and says “our
+          people are the CEOs, presidents, and owners.”
+        </p>
+      </article>
+      <article class="value-card">
+        <h2>Mission</h2>
+        <p>Train and prepare individuals, organizations, First Nation people, and communities.</p>
+      </article>
+      <article class="value-card">
+        <h2>In their words</h2>
+        <p>
+          “As keepers of the land, we map it. We protect it. We inspire the next generation.”
+        </p>
+        <p>Impact named in the portfolio: jobs, skills, self-determination, and environmental protection.</p>
+      </article>
+      <article class="value-card">
+        <h2>Where the work sits</h2>
+        <p>
+          Headquarters in Edmonton, Alberta, with a Maskwacis address for HK Drone Service. The
+          ground school has trained students in Indigenous communities and in government,
+          commercial, and industrial sectors.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap prose">
+      <h2>Named in the portfolio</h2>
+      <p>
+        The slide “Traction and Partnerships” lists these organizations. This page does not invent
+        what each relationship includes.
+      </p>
+      <ul>
+        {portfolioPartners.map((name) => <li>{name}</li>)}
+      </ul>
+      <p>
+        Achievements also listed there: DJI Authorized Dealer, active contracts in environmental
+        monitoring and resource sectors, training partnerships with NAIT and Northquest College,
+        and recognition by the Indigenous Business Canada ecosystem.
+      </p>
+      <p>
+        <a href={page("/blog/flying-higher-ats-nait-partnership/")}>NAIT partnership story</a>
+      </p>
+      <h2>Who teaches</h2>
+      <p>
+        Staff biographies are not in the company materials. Google reviews name Darcy, Olaolu (Ola),
+        Chris, Magid, Milly, and Lena.
+      </p>
+      <p>
+        <a class="btn btn-primary" href={page("/contact/")}>Book a free consultation</a>
+      </p>
+    </div>
+  </section>
+</Base>

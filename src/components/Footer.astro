@@ -1,0 +1,68 @@
+---
+import { business, locations, mapsHref, phones } from "../config/site";
+import { asset, page } from "../lib/urls";
+
+const year = 2026;
+---
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <h2>{business.name}</h2>
+      <p>
+        {business.positioning}. In partnership with {business.partnerName}. {business.tagline}.
+      </p>
+      <p>
+        <img
+          class="hk-logo"
+          src={asset("/brand/hk-logo.webp")}
+          alt="HK Drone Service, 100% Indigenous owned"
+          width="148"
+          height="57"
+        />
+      </p>
+    </div>
+    <nav aria-label="Footer">
+      <h2>Explore</h2>
+      <ul>
+        <li><a href={page("/training/")}>Training courses</a></li>
+        <li><a href={page("/services/")}>Services</a></li>
+        <li><a href={page("/indigenous-relations/")}>Indigenous relations</a></li>
+        <li><a href={page("/about/")}>About</a></li>
+        <li><a href={page("/blog/")}>Blog</a></li>
+        <li><a href={page("/contact/")}>Contact</a></li>
+      </ul>
+    </nav>
+    <div>
+      <h2>Contact</h2>
+      <ul>
+        {
+          phones.map((phone) => (
+            <li>
+              <a href={`tel:${phone.tel}`}>{phone.display}</a>
+            </li>
+          ))
+        }
+        <li><a href={`mailto:${business.email}`}>{business.email}</a></li>
+        <li><a href={`mailto:${business.partnerEmail}`}>{business.partnerEmail}</a></li>
+        {
+          locations.map((place) => (
+            <li>
+              <a href={mapsHref(place.maps)}>
+                {place.name}: {place.detail}
+              </a>
+            </li>
+          ))
+        }
+        <li><a href={business.facebook}>Facebook</a></li>
+        <li><a href={business.linkedin}>LinkedIn</a></li>
+        <li><a href={business.partnerUrl}>HK Drone Service</a></li>
+        <li><a href={business.studentPortal}>Student sign in</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap legal">
+    <p>© {year} {business.legalName}. All rights reserved.</p>
+    <p>Training for the future. Mapping the land. Protecting the environment.</p>
+  </div>
+</footer>

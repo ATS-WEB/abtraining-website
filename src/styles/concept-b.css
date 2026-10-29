@@ -1,0 +1,154 @@
+.concept-b body {
+  margin: 0;
+  background: #100e0c;
+  color: #f6f1e8;
+  font-family: "DM Sans", "Segoe UI", system-ui, sans-serif;
+  font-size: 1.08rem;
+  line-height: 1.5;
+}
+
+.concept-b :focus-visible { outline: 3px solid #f3e2b0; outline-offset: 3px; }
+.concept-b a { color: #f6f1e8; }
+
+.b-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 0.9rem 1.1rem 2.2rem;
+  background: linear-gradient(rgba(16, 14, 12, 0.82), transparent);
+}
+.b-bar > a {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+}
+.b-bar strong {
+  font-family: Newsreader, Georgia, serif;
+  font-weight: 600;
+  font-size: 1.15rem;
+  display: block;
+}
+.b-bar span { display: block; letter-spacing: 0.14em; text-transform: uppercase; font-size: 0.72rem; }
+.b-bar nav { display: flex; gap: 0.9rem; }
+.b-bar a { color: #fff; text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; font-weight: 650; }
+.b-bar a[aria-current="page"] { text-decoration: underline; text-underline-offset: 0.3em; }
+
+.b-shot {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  align-items: end;
+  overflow: hidden;
+  color: #fff;
+}
+.b-shot img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.04);
+  animation: ken 28s ease-in-out infinite alternate;
+}
+.b-shot .veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(16, 14, 12, 0.25), rgba(16, 14, 12, 0.15) 40%, rgba(16, 14, 12, 0.78));
+}
+.b-shot .cap {
+  position: relative;
+  z-index: 1;
+  padding: 22vh 1.2rem 2.4rem;
+  max-width: 900px;
+}
+.b-shot p.eye {
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  margin: 0 0 0.5rem;
+}
+.b-shot h1, .b-shot h2 {
+  font-family: Newsreader, Georgia, serif;
+  font-weight: 600;
+  font-size: clamp(3.2rem, 9vw, 7rem);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  margin: 0 0 0.6rem;
+}
+.b-shot p { margin: 0; font-size: 1.2rem; max-width: 34rem; }
+
+.b-quote {
+  padding: 12vh 1.2rem;
+  background: #171410;
+}
+.b-quote blockquote {
+  margin: 0;
+  font-family: Newsreader, Georgia, serif;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  line-height: 1.2;
+  max-width: 18em;
+}
+.b-quote figcaption { margin-top: 1rem; letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.78rem; }
+
+.b-links { padding: 2rem 1.2rem 3rem; background: #f3efe6; color: #1a140f; }
+.b-links h2 { font-family: Newsreader, Georgia, serif; font-size: clamp(2rem, 4vw, 3rem); margin: 0 0 0.8rem; }
+.b-links a { color: #1a140f; }
+.b-links ul { list-style: none; margin: 0; padding: 0; }
+.b-links li { border-top: 1px solid #cfc4b4; }
+.b-links li a {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 0;
+  min-height: 44px;
+  text-decoration: none;
+  font-size: 1.15rem;
+}
+.b-links li a:hover { text-decoration: underline; }
+
+.b-note, .b-foot { padding: 0 1.2rem 2rem; background: #f3efe6; color: #1a140f; }
+.b-foot { display: flex; flex-wrap: wrap; gap: 0.8rem 1.2rem; }
+.b-foot a, .b-note a { color: #1a140f; }
+.switch { display: flex; flex-wrap: wrap; gap: 0.7rem 1rem; padding: 0 1.2rem 2rem; background: #f3efe6; }
+.switch a { color: #1a140f; }
+
+.b-train {
+  min-height: 70vh;
+  display: grid;
+  align-items: end;
+  position: relative;
+  color: #fff;
+  overflow: hidden;
+}
+.b-train img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.b-train .veil { position: absolute; inset: 0; background: linear-gradient(transparent, rgba(16,14,12,.82)); }
+.b-train .cap { position: relative; z-index: 1; padding: 18vh 1.2rem 2rem; }
+.b-train h1 {
+  font-family: Newsreader, Georgia, serif;
+  font-size: clamp(3.4rem, 10vw, 8rem);
+  line-height: 0.9;
+  margin: 0;
+}
+
+@keyframes ken {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .b-shot img { animation: none; }
+}

@@ -1,0 +1,169 @@
+.concept-c body {
+  margin: 0;
+  background: #070707;
+  color: #f4f4f1;
+  font-family: "DM Sans", "Segoe UI", system-ui, sans-serif;
+}
+
+.concept-c :focus-visible { outline: 3px solid #e4ff4a; outline-offset: 3px; }
+.concept-c a { color: #f4f4f1; }
+
+.c-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #2a2a2a;
+  position: sticky;
+  top: 0;
+  background: #070707;
+  z-index: 5;
+}
+.c-bar a { text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
+.c-mark {
+  font-family: Syne, Inter, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  font-size: 1.15rem;
+}
+.c-nav { display: flex; gap: 0.9rem; font-weight: 700; }
+.c-nav a[aria-current="page"] { color: #e4ff4a; }
+
+.c-hero { padding: 1.2rem 1rem 0; }
+.c-hero p.eye {
+  margin: 0;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: #e4ff4a;
+}
+.c-hero h1 {
+  font-family: Syne, Inter, sans-serif;
+  font-weight: 800;
+  font-size: clamp(3.4rem, 12vw, 8.5rem);
+  line-height: 0.82;
+  letter-spacing: -0.06em;
+  margin: 0.3rem 0 0.6rem;
+}
+.c-hero h1 span { display: block; }
+.c-thrust {
+  height: 4px;
+  width: 42%;
+  background: #e4ff4a;
+  margin: 0.4rem 0 1rem;
+  transform-origin: left center;
+  animation: thrust 2.8s ease-in-out infinite alternate;
+}
+
+.c-steps { display: grid; }
+.c-step {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.8rem 1rem;
+  align-items: end;
+  text-decoration: none;
+  border-top: 1px solid #2a2a2a;
+  padding: 1rem;
+  min-height: 28vh;
+  position: relative;
+  overflow: hidden;
+}
+.c-step b {
+  font-family: Syne, Inter, sans-serif;
+  font-weight: 800;
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  letter-spacing: -0.06em;
+  line-height: 0.85;
+}
+.c-step em {
+  font-style: normal;
+  color: #e4ff4a;
+  font-family: ui-monospace, monospace;
+  letter-spacing: 0.12em;
+}
+.c-step small { display: block; max-width: 28rem; color: #e6e6e1; font-size: 1rem; }
+.c-step img {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: min(42%, 420px);
+  object-fit: cover;
+  opacity: 0.85;
+  clip-path: polygon(18% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.c-spec {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-top: 1px solid #2a2a2a;
+}
+.c-spec div { padding: 1.2rem 1rem; border-bottom: 1px solid #2a2a2a; }
+.c-spec strong {
+  display: block;
+  font-family: Syne, Inter, sans-serif;
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+}
+.c-spec span { color: #e4ff4a; letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.75rem; }
+
+.c-foot, .c-note, .switch { padding: 1.2rem 1rem 2rem; color: #ecece6; }
+.switch { display: flex; flex-wrap: wrap; gap: 0.7rem 1rem; padding-top: 0; }
+.c-foot { display: flex; flex-wrap: wrap; gap: 0.8rem 1.2rem; }
+.c-page h1 {
+  font-family: Syne, Inter, sans-serif;
+  font-weight: 800;
+  font-size: clamp(3.5rem, 12vw, 8rem);
+  line-height: 0.82;
+  letter-spacing: -0.06em;
+  margin: 0.4rem 1rem 1rem;
+}
+.c-list { list-style: none; margin: 0; padding: 0 0 2rem; }
+.c-list a {
+  display: grid;
+  grid-template-columns: 4rem 1fr;
+  gap: 0.5rem;
+  padding: 1rem;
+  border-top: 1px solid #2a2a2a;
+  text-decoration: none;
+  min-height: 44px;
+  align-items: center;
+}
+.c-list a:hover b { color: #e4ff4a; }
+.c-list b { font-family: Syne, sans-serif; font-size: 1.35rem; }
+
+.reel-window {
+  margin: 0 1rem 1.5rem;
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #111;
+}
+.reel-window .reel, .reel-window img, .reel-window video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes thrust {
+  from { transform: scaleX(0.35); }
+  to { transform: scaleX(1); }
+}
+
+@media (min-width: 800px) {
+  .c-spec { grid-template-columns: repeat(3, 1fr); }
+  .c-spec div { border-bottom: 0; border-right: 1px solid #2a2a2a; }
+  .c-step { min-height: 32vh; padding-right: 38%; }
+}
+
+@media (max-width: 700px) {
+  .c-step img { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .c-thrust { animation: none; width: 70%; }
+}

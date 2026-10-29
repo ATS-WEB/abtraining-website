@@ -1,0 +1,70 @@
+---
+import type { Course } from "../data/courses";
+import {
+  dateLabel,
+  enquiryPath,
+  durationLabel,
+  formatLabel,
+  priceLabel,
+  registerHref,
+  summary,
+} from "../lib/courses";
+import { page } from "../lib/urls";
+
+interface Props {
+  course: Course;
+  heading?: "h2" | "h3";
+}
+
+const { course, heading = "h2" } = Astro.props;
+const Title = heading;
+const price = priceLabel(course);
+const dates = dateLabel(course);
+const external = Boolean(course.checkoutUrl);
+const courseHref = page(`/training/${course.slug}/`);
+const askHref = page(enquiryPath(course.slug));
+---
+
+<article class="course-card" data-type={course.type}>
+  <div class="chip-row">
+    <span class:list={["chip", course.type === "Regulation" ? "chip-reg" : "chip-app"]}>
+      {course.type}
+    </span>
+    <span class="chip">{formatLabel(course)}</span>
+    {external && <span class="chip chip-buy">Enroll online</span>}
+  </div>
+  <Title>
+    <a href={courseHref}>{course.name}</a>
+  </Title>
+  <p class="meta-line">{course.level} · {durationLabel(course)}</p>
+  <p class="card-copy">{summary(course)}</p>
+  <p class="price">
+    {
+      price.mode === "ask" ? (
+        <a href={askHref}>{price.text}</a>
+      ) : (
+        price.text
+      )
+    }
+  </p>
+  <p class="dates">
+    {
+      dates.known ? (
+        dates.text
+      ) : (
+        <a href={askHref}>{dates.text}</a>
+      )
+    }
+  </p>
+  <div class="card-actions">
+    <a class="btn btn-secondary" href={courseHref}>View course</a>
+    <a class="btn btn-primary" href={registerHref(course)}>
+      {external ? "Register" : "Enquire"}
+      {
+        external && (
+          <span class="sr-only"> — opens Thinkific checkout</span>
+        )
+      }
+    </a>
+  </div>
+</article>

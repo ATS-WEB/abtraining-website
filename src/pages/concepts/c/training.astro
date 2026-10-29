@@ -1,0 +1,43 @@
+---
+import "@fontsource/syne/latin-800.css";
+import "@fontsource/dm-sans/latin-400.css";
+import "../../../styles/concept-c.css";
+import Concept from "../../../layouts/Concept.astro";
+import Switch from "../../../components/concepts/Switch.astro";
+import { courses } from "../../../data/courses";
+import { page } from "../../../lib/urls";
+---
+
+<Concept
+  klass="concept-c"
+  title="Concept C training header | Aboriginal Training Services"
+  description="Future Pathway training header concept."
+>
+  <header class="c-bar">
+    <a class="c-mark" href={page("/concepts/c/")}>ATS / HK</a>
+    <nav class="c-nav" aria-label="Concept C">
+      <a href={page("/concepts/c/training/")} aria-current="page">Training</a>
+      <a href={page("/contact/")}>Contact</a>
+    </nav>
+  </header>
+  <main id="main" class="c-page">
+    <p class="eye" style="margin:1rem 1rem 0;letter-spacing:.18em;text-transform:uppercase;color:#e4ff4a;font-size:.75rem">
+      Flight plan · 100% Indigenous owned and operated
+    </p>
+    <h1>Training</h1>
+    <ul class="c-list">
+      {
+        courses.slice(0, 8).map((course, index) => (
+          <li>
+            <a href={page(`/training/${course.slug}/`)}>
+              <em style="color:#e4ff4a;font-style:normal">{String(index + 1).padStart(2, "0")}</em>
+              <b>{course.name}</b>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="c-note"><a href={page("/training/")}>Full catalog on the current site</a></p>
+    <Switch current="c" />
+  </main>
+</Concept>
