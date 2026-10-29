@@ -1,0 +1,73 @@
+---
+import { places } from "../data/places";
+import { asset } from "../lib/urls";
+---
+
+<section class="work-map" id="map" aria-labelledby="map-title">
+  <div class="wrap">
+    <p class="eyebrow">Where the work is named</p>
+    <h2 id="map-title">Map of our work</h2>
+    <p>
+      Only places named in the brochure, the portfolio, or a story on this site. The portfolio’s
+      other community pins are not named, so they are not drawn.
+    </p>
+    <div class="map-layout">
+      <div class="map-frame">
+        <svg viewBox="0 0 640 460" role="img" aria-labelledby="map-svg-title">
+          <title id="map-svg-title">Western Canada, with Edmonton, Maskwacis, and British Columbia marked</title>
+          <path
+            class="map-land"
+            d="M40 80 L150 40 L210 70 L250 50 L300 90 L340 60 L390 100 L430 80 L470 120 L500 100 L540 140 L520 200 L490 240 L520 300 L480 360 L430 400 L360 420 L280 400 L220 430 L140 390 L90 340 L70 260 L50 180 Z"
+          />
+          <path class="map-line" d="M40 200 C120 180 180 220 260 190 C340 160 420 210 520 180" />
+          <path class="map-line" d="M60 280 C150 250 230 300 320 270 C400 246 470 290 540 260" />
+          <text x="78" y="58" fill="#d7f6ff" font-size="18" font-family="sans-serif">British Columbia</text>
+          <text x="360" y="58" fill="#d7f6ff" font-size="18" font-family="sans-serif">Alberta</text>
+        </svg>
+        {
+          places.map((place, index) => (
+            <button
+              class="map-pin"
+              type="button"
+              style={`left:${(place.x / 640) * 100}%;top:${(place.y / 460) * 100}%`}
+              aria-pressed={index === 0 ? "true" : "false"}
+              aria-controls={`place-${place.id}`}
+              data-place={place.id}
+            >
+              <span class="sr-only">{place.name}, {place.region}</span>
+            </button>
+          ))
+        }
+      </div>
+      <div class="map-cards">
+        {
+          places.map((place) => (
+            <article id={`place-${place.id}`} data-place-card={place.id}>
+              {place.photo ? (
+                <img src={asset(place.photo)} alt={place.photoAlt} width="800" height="450" />
+              ) : (
+                <p class="map-missing">TODO(owner): add a photograph of this project. None was in the files.</p>
+              )}
+              <h3>{place.name}</h3>
+              <p class="fine">{place.region}</p>
+              <p>{place.story}</p>
+              <p class="fine">Source: {place.source}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const pins = document.querySelectorAll<HTMLButtonElement>(".map-pin");
+  const cards = document.querySelectorAll<HTMLElement>("[data-place-card]");
+  const show = (id: string | undefined) => {
+    pins.forEach((pin) => pin.setAttribute("aria-pressed", pin.dataset.place === id ? "true" : "false"));
+    cards.forEach((card) => card.toggleAttribute("hidden", card.dataset.placeCard !== id));
+  };
+  pins.forEach((pin) => pin.addEventListener("click", () => show(pin.dataset.place)));
+  const initial = document.querySelector<HTMLButtonElement>('.map-pin[aria-pressed="true"]');
+  if (initial) show(initial.dataset.place);
+</script>

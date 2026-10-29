@@ -164,6 +164,16 @@ a:hover {
   backdrop-filter: blur(12px);
 }
 
+.has-overlay-header .utility { display: none; }
+.has-overlay-header .site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(rgba(7, 17, 28, 0.92), rgba(7, 17, 28, 0.35));
+  border-bottom: 0;
+}
+
 .header-bar {
   width: min(var(--max), calc(100% - 2rem));
   margin-inline: auto;
