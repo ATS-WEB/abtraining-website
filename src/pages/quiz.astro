@@ -1,0 +1,12 @@
+---
+import Quiz from "../components/Quiz.astro";
+import Base from "../layouts/Base.astro";
+import "../styles/experience.css";
+
+const description =
+  "Free five-question Transport Canada RPAS practice for Basic or Advanced operations, with sources and a link to the matching ground school.";
+---
+
+<Base title="Can you pass? RPAS practice" description={description} path="/quiz/">
+  <Quiz />
+</Base>

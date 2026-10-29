@@ -12,6 +12,8 @@ export const GET: APIRoute = async () => {
     "/indigenous-relations/",
     "/about/",
     "/contact/",
+    "/quiz/",
+    "/voices/",
     "/blog/",
     ...courses.map((course) => `/training/${course.slug}/`),
     ...posts.map((post) => `/blog/${post.id}/`),

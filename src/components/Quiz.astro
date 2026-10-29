@@ -1,0 +1,182 @@
+---
+import { business } from "../config/site";
+import { quizCourses, quizQuestions, type QuizLevel } from "../data/quiz";
+import { page } from "../lib/urls";
+
+const levels: QuizLevel[] = ["basic", "advanced"];
+---
+
+<section class="quiz" id="quiz" aria-labelledby="quiz-title">
+  <div class="wrap">
+    <p class="eyebrow">Can you pass?</p>
+    <h2 id="quiz-title">Five questions. Then a course that matches.</h2>
+    <p class="quiz-lead">
+      A free practice set from the current Canadian Aviation Regulations and Transport Canada’s
+      drone pages. It is not the Transport Canada exam.
+    </p>
+    <form class="quiz-form" data-endpoint={business.formEndpoint} data-email={business.email}>
+      <fieldset>
+        <legend>Which exam are you aiming at?</legend>
+        <label><input type="radio" name="level" value="basic" checked /> Basic operations</label>
+        <label><input type="radio" name="level" value="advanced" /> Advanced operations</label>
+      </fieldset>
+      {
+        levels.map((level) => (
+          <div class="quiz-set" data-level={level} hidden={level !== "basic"}>
+            {quizQuestions
+              .filter((question) => question.level === level)
+              .map((question, index) => (
+                <fieldset>
+                  <legend>
+                    {index + 1}. {question.prompt}
+                  </legend>
+                  {question.choices.map((choice, choiceIndex) => (
+                      <label>
+                      <input
+                        type="radio"
+                        name={question.id}
+                        value={String(choiceIndex)}
+                        required
+                        disabled={level !== "basic"}
+                      />
+                      {choice}
+                    </label>
+                  ))}
+                </fieldset>
+              ))}
+          </div>
+        ))
+      }
+      <button class="btn btn-primary" type="submit">See my score</button>
+    </form>
+    <div class="quiz-result" hidden>
+      <h3 data-score></h3>
+      <p data-recommend></p>
+      <p><a class="btn btn-primary" data-checkout href={quizCourses.basic.checkoutUrl}>Register for the course</a></p>
+      <ol class="quiz-review" data-review></ol>
+      <form class="quiz-mail" hidden>
+        <h3>Send this result to the academy</h3>
+        <p>Optional. This uses the same enquiry path as the contact page. Nothing is stored on this website unless a form address is configured.</p>
+        <label>
+          Name
+          <input name="name" type="text" autocomplete="name" required />
+        </label>
+        <label>
+          Email
+          <input name="email" type="email" autocomplete="email" required />
+        </label>
+        <button class="btn btn-secondary" type="submit">Email my result</button>
+        <p class="form-status" data-mail-status role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ quizQuestions, quizCourses, contactPath: page("/contact/") }}>
+  const form = document.querySelector(".quiz-form");
+  const result = document.querySelector(".quiz-result");
+  if (!(form instanceof HTMLFormElement) || !(result instanceof HTMLElement)) {
+    /* static page */
+  } else {
+    const sets = form.querySelectorAll(".quiz-set");
+    const levelInputs = form.querySelectorAll('input[name="level"]');
+    const showLevel = () => {
+      const picked = new FormData(form).get("level");
+      sets.forEach((set) => {
+        const on = set.getAttribute("data-level") === picked;
+        set.toggleAttribute("hidden", !on);
+        set.querySelectorAll("input").forEach((input) => {
+          input.disabled = !on;
+          if (!on) input.checked = false;
+        });
+      });
+    };
+    levelInputs.forEach((input) => input.addEventListener("change", showLevel));
+    showLevel();
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const level = String(new FormData(form).get("level"));
+      const bank = quizQuestions.filter((question) => question.level === level);
+      let correct = 0;
+      const review = result.querySelector("[data-review]");
+      if (review) review.replaceChildren();
+      bank.forEach((question) => {
+        const chosen = Number(new FormData(form).get(question.id));
+        const right = chosen === question.answer;
+        if (right) correct += 1;
+        const item = document.createElement("li");
+        const title = document.createElement("p");
+        title.textContent = `${right ? "Correct" : "Not this one"}: ${question.prompt}`;
+        const why = document.createElement("p");
+        why.textContent = question.explanation;
+        const source = document.createElement("p");
+        const link = document.createElement("a");
+        link.href = question.sourceUrl;
+        link.textContent = question.source;
+        source.append("Source: ", link);
+        item.append(title, why, source);
+        review?.append(item);
+      });
+      const course = quizCourses[level];
+      const score = result.querySelector("[data-score]");
+      const recommend = result.querySelector("[data-recommend]");
+      const checkout = result.querySelector("[data-checkout]");
+      if (score) score.textContent = `${correct} out of ${bank.length}`;
+      if (recommend) {
+        recommend.textContent =
+          correct >= 4
+            ? `You handled this ${course.label} set well. The matching ground school is the next step, and it is not the Transport Canada exam.`
+            : `This ${course.label} set shows where to study next. The ground school walks through these rules before exam day.`;
+      }
+      if (checkout instanceof HTMLAnchorElement) {
+        checkout.href = course.checkoutUrl;
+        checkout.textContent = `Register for ${course.label}`;
+      }
+      result.hidden = false;
+      const mail = result.querySelector(".quiz-mail");
+      if (mail instanceof HTMLElement) mail.hidden = false;
+      result.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    const mail = result.querySelector(".quiz-mail");
+    mail?.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (!(mail instanceof HTMLFormElement)) return;
+      const data = new FormData(mail);
+      const name = String(data.get("name") || "");
+      const email = String(data.get("email") || "");
+      const score = result.querySelector("[data-score]")?.textContent ?? "";
+      const level = String(new FormData(form).get("level"));
+      const course = quizCourses[level];
+      const status = mail.querySelector("[data-mail-status]");
+      const endpoint = form.dataset.endpoint || "";
+      const inbox = form.dataset.email || "";
+      const payload = {
+        name,
+        email,
+        phone: "",
+        course: course.courseSlug,
+        message: `Practice quiz (${course.label}): ${score}. Please tell me how to enrol.`,
+      };
+      if (endpoint) {
+        fetch(endpoint, {
+          method: "POST",
+          headers: { Accept: "application/json", "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        })
+          .then((response) => {
+            if (!response.ok) throw new Error(String(response.status));
+            if (status) status.textContent = "Message sent. We will reply by email.";
+          })
+          .catch(() => {
+            if (status) status.textContent = `The form could not be sent. Email ${inbox} instead.`;
+          });
+        return;
+      }
+      const body = `Name: ${name}\nEmail: ${email}\nCourse: ${course.label}\n\n${payload.message}`;
+      window.location.href = `mailto:${inbox}?subject=${encodeURIComponent("Practice quiz result")}&body=${encodeURIComponent(body)}`;
+      if (status) status.textContent = `Your email app should open with this message. If it does not, email ${inbox} directly.`;
+    });
+  }
+</script>

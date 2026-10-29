@@ -1,0 +1,22 @@
+---
+import Voices from "../components/Voices.astro";
+import Base from "../layouts/Base.astro";
+import "../styles/experience.css";
+import { business } from "../config/site";
+
+const description =
+  "Google reviews from Aboriginal Training Services students, and the career lines published in the ATS and HK portfolio.";
+---
+
+<Base title="Student voices" description={description} path="/voices/">
+  <section class="page-intro">
+    <div class="wrap">
+      <h1>Voices from the academy</h1>
+      <p class="lead">
+        {business.legalName} is 100% Indigenous owned and operated. These reviews are printed as
+        they were left on Google.
+      </p>
+    </div>
+  </section>
+  <Voices full={true} />
+</Base>
