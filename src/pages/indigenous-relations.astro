@@ -1,0 +1,137 @@
+---
+import Base from "../layouts/Base.astro";
+import { business } from "../config/site";
+import { page } from "../lib/urls";
+
+const description =
+  "How Aboriginal Training Services works with Indigenous communities: land stewardship, data guardianship, environmental monitoring, and RPAS training.";
+---
+
+<Base title="Indigenous Relations" description={description} path="/indigenous-relations/">
+  <section class="page-intro">
+    <div class="wrap prose">
+      <h1>Indigenous relations</h1>
+      <p class="lead">
+        Honouring Indigenous values while using drone technology for environmental protection,
+        community service, and cultural preservation.
+      </p>
+      <p>{business.tagline}.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:1rem">
+    <div class="wrap">
+      <h2>What guides the work</h2>
+      <div class="value-grid">
+        <article class="value-card">
+          <h3>Land stewardship</h3>
+          <p>
+            A responsibility to protect and preserve the land for future generations through
+            sustainable technology practices.
+          </p>
+          <p>
+            “We are the keepers of the land, using drone technology to monitor, protect, and
+            understand our environment.”
+          </p>
+        </article>
+        <article class="value-card">
+          <h3>Data guardianship</h3>
+          <p>
+            Protecting and managing the information we gather so it serves the community’s
+            interests.
+          </p>
+          <p>
+            “We are the keepers of the data, maintaining accuracy, privacy, and ethical use of all
+            collected information.”
+          </p>
+        </article>
+        <article class="value-card">
+          <h3>Environmental protection</h3>
+          <p>Using technology as a tool to safeguard the natural world and watch how it changes.</p>
+          <p>
+            “We are the keepers of the environment, utilizing drones to protect ecosystems and
+            wildlife habitats.”
+          </p>
+        </article>
+        <article class="value-card">
+          <h3>Community service</h3>
+          <p>Technology should serve communities and Indigenous nations, not sit apart from them.</p>
+          <p>“Technology should strengthen communities and preserve cultural connections to the land.”</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap prose">
+      <h2>How knowledge and technology meet</h2>
+      <p>
+        The work combines Indigenous land knowledge with RPAS so monitoring is useful and
+        respectful. Data collection follows protocols that honour Indigenous data sovereignty and
+        community consent.
+      </p>
+      <p>
+        Drones are used to watch traditional territories, track environmental change, and support
+        conservation. The same curiosity extends to teachings about the sky: ancestral
+        understanding of the cosmos, and what that can mean for aerospace learning.
+      </p>
+      <h2>Where RPAS is put to work</h2>
+    </div>
+    <div class="wrap service-grid" style="margin-top:1rem">
+      <article class="service-card">
+        <h3>Traditional territory mapping</h3>
+        <p>Maps that support land claims, resource management, and cultural preservation.</p>
+        <ul>
+          <li>Boundary documentation</li>
+          <li>Historical site preservation</li>
+          <li>Resource management planning</li>
+          <li>Cultural education</li>
+        </ul>
+      </article>
+      <article class="service-card">
+        <h3>Environmental monitoring</h3>
+        <p>Ecosystem health, wildlife habitat, and change over time.</p>
+        <ul>
+          <li>Wildlife habitat assessment</li>
+          <li>Water monitoring</li>
+          <li>Forest health</li>
+          <li>Climate documentation</li>
+        </ul>
+      </article>
+      <article class="service-card">
+        <h3>Cultural site documentation</h3>
+        <p>Recording important cultural and historical sites for the people who come next.</p>
+        <ul>
+          <li>3D site reconstruction</li>
+          <li>Historical preservation</li>
+          <li>Education resources</li>
+          <li>Heritage protection</li>
+        </ul>
+      </article>
+      <article class="service-card">
+        <h3>Community development</h3>
+        <p>Infrastructure and planning that still has to respect cultural values.</p>
+        <ul>
+          <li>Development planning</li>
+          <li>Infrastructure assessment</li>
+          <li>Community consultation</li>
+          <li>Cultural impact evaluation</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="wrap">
+      <h2>Talk about a project on your territory</h2>
+      <p>
+        If your nation or organization wants training, mapping, or a monitoring program, start a
+        conversation. We work as partners, not as a drop-in vendor.
+      </p>
+      <div class="actions">
+        <a class="btn btn-copper" href={page("/contact/")}>Start a conversation</a>
+        <a class="btn btn-on-dark" href={page("/training/")}>Explore training</a>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,234 @@
+---
+import { getCollection } from "astro:content";
+import CourseCard from "../components/CourseCard.astro";
+import Base from "../layouts/Base.astro";
+import { business, publishedStats } from "../config/site";
+import { courses } from "../data/courses";
+import { reviews } from "../data/reviews";
+import { formatIsoDate } from "../lib/courses";
+import { page } from "../lib/urls";
+
+const online = courses.filter((course) => course.checkoutUrl);
+const posts = (await getCollection("blog")).sort((a, b) =>
+  a.data.date < b.data.date ? 1 : -1,
+);
+const latest = posts.slice(0, 3);
+const description =
+  "Edmonton RPAS academy for Transport Canada exam prep, in-person flight training, and applied drone programs with Indigenous communities across Canada.";
+---
+
+<Base
+  title="Aboriginal Training Services | RPAS and Drone Training in Edmonton"
+  description={description}
+  path="/"
+>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Edmonton, Alberta · Professional RPAS Academy</p>
+        <h1>Advocate, encourage, and unite Indigenous communities to lead the drone industry.</h1>
+        <p class="lead">
+          Transport Canada exam preparation, in-person flight training, and applied RPAS programs
+          for pilots, employers, and First Nations communities.
+        </p>
+        <div class="actions">
+          <a class="btn btn-copper" href={page("/training/")}>View training courses</a>
+          <a class="btn btn-on-dark" href={page("/contact/")}>Contact the team</a>
+        </div>
+      </div>
+      <aside class="trust-card">
+        <h2>Why people call</h2>
+        <ul class="trust-list">
+          <li>
+            <strong>{business.googleRating} out of 5</strong>
+            <span>From {business.googleReviewCount} Google reviews</span>
+          </li>
+          <li>
+            <strong>NAIT partnership</strong>
+            <span>
+              <a href={page("/blog/flying-higher-ats-nait-partnership/")}>
+                Drone training with NAIT students
+              </a>
+            </span>
+          </li>
+          <li>
+            <strong>Exam prep you can buy today</strong>
+            <span>Basic and Advanced online courses check out on Thinkific.</span>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <ul class="stats">
+      {
+        publishedStats.map((stat) => (
+          <li class="stat">
+            <b>{stat.value}</b>
+            <span>{stat.label}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Start online</h2>
+        <p>
+          Basic and Advanced exam preparation can be purchased online. For every other course, ask
+          us for the Canadian dollar price and the next date.
+        </p>
+      </div>
+      <div class="course-grid">
+        {online.map((course) => <CourseCard course={course} heading="h3" />)}
+      </div>
+      <p style="margin-top:1.2rem">
+        <a class="btn btn-secondary" href={page("/training/")}>See all {courses.length} courses</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>A path through the training</h2>
+        <p>Move from the certificate exams into flight skills and applied work.</p>
+      </div>
+      <ol class="pathway">
+        <li>
+          <span class="num">01</span>
+          <h3>Basic operations</h3>
+          <p>Online preparation for the Transport Canada basic RPAS exam. Age 14+.</p>
+          <a href={page("/training/drone-pilot-certificate-basic-online/")}>View the basic course</a>
+        </li>
+        <li>
+          <span class="num">02</span>
+          <h3>Advanced operations</h3>
+          <p>Online or in person, including night operations and controlled airspace.</p>
+          <a href={page("/training/drone-pilot-certificate-advanced-online/")}>View advanced online</a>
+        </li>
+        <li>
+          <span class="num">03</span>
+          <h3>Applied RPAS</h3>
+          <p>Mapping, LiDAR, thermal, environmental monitoring, and search and rescue.</p>
+          <a href={page("/training/")}>Browse application courses</a>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Why Aboriginal Training Services</h2>
+        <p>
+          Cutting-edge drone training, taught with respect, responsibility, and care for the
+          people in the room.
+        </p>
+      </div>
+      <div class="why-grid">
+        <article class="why-card">
+          <h3>Professional certification</h3>
+          <p>
+            RPAS programs with a clear path toward professional operations, including preparation
+            for Transport Canada basic and advanced exams.
+          </p>
+        </article>
+        <article class="why-card">
+          <h3>Indigenous values</h3>
+          <p>Rooted in tradition, guided by community, and designed so more people can take part.</p>
+        </article>
+        <article class="why-card">
+          <h3>Working pilots as instructors</h3>
+          <p>
+            Learn from people who fly commercially. Students name Darcy, Ola, Chris, Magid, Milly,
+            and Lena in their reviews.
+          </p>
+        </article>
+        <article class="why-card">
+          <h3>Safety first</h3>
+          <p>Safety training for responsible, compliant drone operations, in class and in the field.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>What students wrote on Google</h2>
+        <p>
+          Rated {business.googleRating} from {business.googleReviewCount} Google reviews. These
+          quotes are copied from the previous website.
+        </p>
+      </div>
+      <div class="quote-grid">
+        {
+          reviews.map((review) => (
+            <figure class="quote">
+              <blockquote>
+                <p>{review.quote}</p>
+              </blockquote>
+              <figcaption>
+                <cite>{review.name}</cite>
+                — {review.when}
+              </figcaption>
+            </figure>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <h2>{business.tagline}</h2>
+      <p>
+        RPAS work with Indigenous communities is a partnership: territory mapping, environmental
+        monitoring, and training that leaves skills in the community.
+      </p>
+      <div class="actions">
+        <a class="btn btn-copper" href={page("/indigenous-relations/")}>Indigenous relations</a>
+        <a class="btn btn-on-dark" href={page("/services/")}>See services</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>From the blog</h2>
+        <a href={page("/blog/")}>All stories</a>
+      </div>
+      <div class="post-grid">
+        {
+          latest.map((post) => (
+            <article class="post-card">
+              <time datetime={post.data.date}>{formatIsoDate(post.data.date)}</time>
+              <h3>
+                <a href={page(`/blog/${post.id}/`)}>{post.data.title}</a>
+              </h3>
+              <p>{post.data.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="wrap">
+      <h2>Ready to train?</h2>
+      <p>
+        Enroll in a self-paced exam course, or tell us what your crew, company, or community needs.
+      </p>
+      <div class="actions">
+        <a class="btn btn-copper" href={page("/training/")}>Browse courses</a>
+        <a class="btn btn-on-dark" href={page("/contact/")}>Send an enquiry</a>
+      </div>
+    </div>
+  </section>
+</Base>

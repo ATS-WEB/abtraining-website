@@ -1,0 +1,46 @@
+---
+import { addressLines, business, mapsHref } from "../config/site";
+import { page } from "../lib/urls";
+
+const year = 2026;
+---
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <h2>{business.name}</h2>
+      <p>{business.tagline}. Professional RPAS training from Edmonton, Alberta.</p>
+      <p>{business.motto}</p>
+    </div>
+    <nav aria-label="Footer">
+      <h2>Explore</h2>
+      <ul>
+        <li><a href={page("/training/")}>Training courses</a></li>
+        <li><a href={page("/services/")}>Services</a></li>
+        <li><a href={page("/indigenous-relations/")}>Indigenous relations</a></li>
+        <li><a href={page("/about/")}>About</a></li>
+        <li><a href={page("/blog/")}>Blog</a></li>
+        <li><a href={page("/contact/")}>Contact</a></li>
+      </ul>
+    </nav>
+    <div>
+      <h2>Contact</h2>
+      <ul>
+        <li><a href={`tel:${business.phoneTel}`}>{business.phoneDisplay}</a></li>
+        <li><a href={`mailto:${business.email}`}>{business.email}</a></li>
+        <li><a href={mapsHref()}>{addressLines().join(", ")}</a></li>
+        <li>
+          <a href={business.facebook}>Facebook</a>
+        </li>
+        <li>
+          <a href={business.linkedin}>LinkedIn</a>
+        </li>
+        <li><a href={business.studentPortal}>Student sign in</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap legal">
+    <p>© {year} {business.legalName}. All rights reserved.</p>
+    <p>Mapping the lands and protecting the environment.</p>
+  </div>
+</footer>

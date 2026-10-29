@@ -1,0 +1,99 @@
+---
+import Base from "../layouts/Base.astro";
+import { business, publishedStats } from "../config/site";
+import { page } from "../lib/urls";
+
+const description =
+  "Aboriginal Training Services is an Edmonton RPAS academy. Our vision, mission, and the results we publish, including a NAIT partnership and a 5.0 Google rating.";
+---
+
+<Base title="About Aboriginal Training Services" description={description} path="/about/">
+  <section class="page-intro">
+    <div class="wrap prose">
+      <h1>About us</h1>
+      <p class="lead">
+        {business.name} is a professional RPAS academy in {business.city}, {business.region}.{" "}
+        {business.tagline}.
+      </p>
+      <p>{business.motto}.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:1rem">
+    <div class="wrap">
+      <h2>Published results</h2>
+      <ul class="stats" style="margin-top:1rem">
+        {
+          publishedStats.map((stat) => (
+            <li class="stat">
+              <b>{stat.value}</b>
+              <span>{stat.label}</span>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="fine" style="margin-top:0.8rem">
+        These figures are the ones published on the previous website. The Google rating is{" "}
+        {business.googleRating} from {business.googleReviewCount} reviews.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap value-grid">
+      <article class="value-card">
+        <h2>Vision</h2>
+        <p>
+          Create leaders, innovators, entrepreneurs, and strong youth within Indigenous communities.
+        </p>
+      </article>
+      <article class="value-card">
+        <h2>Mission</h2>
+        <p>
+          Train and prepare individuals, organizations, First Nations peoples, and communities for
+          drone technology and innovation.
+        </p>
+      </article>
+      <article class="value-card">
+        <h2>Values</h2>
+        <p>Indigenous wisdom, honesty, creativity, and solutions-based thinking.</p>
+      </article>
+      <article class="value-card">
+        <h2>Collaboration</h2>
+        <p>
+          Partnerships that amplify Indigenous voices and strengthen community impact. Students
+          describe the company as Indigenous-owned.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap prose">
+      <h2>Partnerships</h2>
+      <p>
+        <a href={page("/blog/flying-higher-ats-nait-partnership/")}>
+          Aboriginal Training Services and NAIT
+        </a>{" "}
+        are bringing drone training into higher education, including for Indigenous learners, with
+        Transport Canada certification prep and hands-on flying.
+      </p>
+      {
+        business.ccabMember && (
+          <p>
+            On its course store, {business.legalName} says it is a member of the Canadian Council
+            for Aboriginal Business.
+          </p>
+        )
+      }
+      <h2>Who teaches</h2>
+      <p>
+        We do not publish staff biographies here. Google reviews name instructors and facilitators
+        students actually met: Darcy, Olaolu (Ola), Chris, Magid, Milly, and Lena.
+      </p>
+      <p>
+        <a class="btn btn-primary" href={page("/contact/")}>Talk with the team</a>
+      </p>
+    </div>
+  </section>
+</Base>

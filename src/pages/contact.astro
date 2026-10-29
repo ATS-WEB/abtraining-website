@@ -1,0 +1,159 @@
+---
+import Base from "../layouts/Base.astro";
+import { addressLines, business, mapsHref } from "../config/site";
+import { courses } from "../data/courses";
+
+const description =
+  "Contact Aboriginal Training Services in Edmonton. Call, email, or send a course enquiry. Phone +1 (587) 524-0275, darcy@abtraining.ca.";
+---
+
+<Base title="Contact Aboriginal Training Services" description={description} path="/contact/">
+  <section class="page-intro">
+    <div class="wrap">
+      <h1>Contact</h1>
+      <p class="lead">
+        Ask about a course, a date, or training for your community or organization. We reply by
+        email or phone.
+      </p>
+    </div>
+  </section>
+  <section class="section" style="padding-top:1rem">
+    <div class="wrap contact-grid">
+      <div class="contact-card">
+        <h2>Edmonton office</h2>
+        <p>
+          <a href={mapsHref()}>{addressLines().join(", ")}</a>
+        </p>
+        <p>
+          <a href={`tel:${business.phoneTel}`}>{business.phoneDisplay}</a>
+        </p>
+        <p>
+          <a href={`mailto:${business.email}`}>{business.email}</a>
+        </p>
+        <p>
+          Prefer to write directly? Email
+          <a href={`mailto:${business.email}`}>{business.email}</a>
+          and include the course name.
+        </p>
+        <p>
+          Current students can
+          <a href={business.studentPortal}>sign in on Thinkific</a>.
+        </p>
+      </div>
+      <form
+        id="enquiry"
+        class="contact-card"
+        method="post"
+        data-endpoint={business.formEndpoint}
+        data-email={business.email}
+      >
+        <h2>Send an enquiry</h2>
+        <p class="fine" id="form-help">
+          {
+            business.formEndpoint
+              ? "This form is sent to the address configured for the site."
+              : "This form opens your email app with the message filled in. Nothing is stored on this website."
+          }
+        </p>
+        <label>
+          Name
+          <input name="name" type="text" autocomplete="name" required />
+        </label>
+        <label>
+          Email
+          <input name="email" type="email" autocomplete="email" inputmode="email" required />
+        </label>
+        <label>
+          Phone <span class="fine">(optional)</span>
+          <input name="phone" type="tel" autocomplete="tel" />
+        </label>
+        <label>
+          Course
+          <select id="course" name="course">
+            <option value="">General enquiry</option>
+            <option value="custom">Custom or community training</option>
+            {courses.map((course) => <option value={course.slug}>{course.name}</option>)}
+          </select>
+        </label>
+        <label>
+          Message
+          <textarea name="message" required minlength="10"></textarea>
+        </label>
+        <div class="hp" aria-hidden="true">
+          <label>
+            Company
+            <input name="company" type="text" tabindex="-1" autocomplete="off" />
+          </label>
+        </div>
+        <button class="btn btn-primary" type="submit">Send enquiry</button>
+        <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const selected = params.get("course");
+  const select = document.querySelector<HTMLSelectElement>("#course");
+  if (selected && select?.querySelector(`option[value="${CSS.escape(selected)}"]`)) {
+    select.value = selected;
+  }
+
+  const form = document.querySelector<HTMLFormElement>("#enquiry");
+  const status = document.querySelector("#form-status");
+
+  form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (!form) return;
+    const data = new FormData(form);
+    if (String(data.get("company") || "").trim()) return;
+
+    const payload = {
+      name: String(data.get("name") || ""),
+      email: String(data.get("email") || ""),
+      phone: String(data.get("phone") || ""),
+      course: String(data.get("course") || ""),
+      message: String(data.get("message") || ""),
+    };
+    const endpoint = form.dataset.endpoint || "";
+    const email = form.dataset.email || "";
+
+    if (endpoint) {
+      try {
+        const response = await fetch(endpoint, {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+        if (!response.ok) throw new Error(String(response.status));
+        form.reset();
+        if (status) status.textContent = "Message sent. We will reply by email.";
+      } catch {
+        if (status) {
+          status.textContent = `The form could not be sent. Email ${email} instead.`;
+        }
+      }
+      return;
+    }
+
+    const courseLabel =
+      select?.selectedOptions[0]?.textContent?.trim() || payload.course || "General enquiry";
+    const subject = `Course enquiry: ${courseLabel}`;
+    const body = [
+      `Name: ${payload.name}`,
+      `Email: ${payload.email}`,
+      `Phone: ${payload.phone || "(not provided)"}`,
+      `Course: ${courseLabel}`,
+      "",
+      payload.message,
+    ].join("\n");
+    window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    if (status) {
+      status.textContent = `Your email app should open with this message. If it does not, email ${email} directly.`;
+    }
+  });
+</script>

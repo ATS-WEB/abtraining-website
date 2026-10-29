@@ -1,0 +1,45 @@
+---
+import "../styles/global.css";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import Seo from "../components/Seo.astro";
+import { asset } from "../lib/urls";
+import { organizationSchema } from "../lib/schema";
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  jsonLd?: Record<string, unknown>[];
+  noindex?: boolean;
+}
+
+const { title, description, path, jsonLd = [], noindex = false } = Astro.props;
+const schemas = noindex ? jsonLd : [organizationSchema(), ...jsonLd];
+---
+
+<!doctype html>
+<html lang="en-CA">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0e261e" />
+    <link rel="icon" href={asset("/favicon.png")} type="image/png" />
+    <link rel="apple-touch-icon" href={asset("/brand/mark.png")} />
+    <Seo
+      title={title}
+      description={description}
+      path={path}
+      jsonLd={schemas}
+      noindex={noindex}
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

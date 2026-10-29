@@ -1,0 +1,96 @@
+---
+import Base from "../layouts/Base.astro";
+import { courses } from "../data/courses";
+import { durationLabel } from "../lib/courses";
+import { page } from "../lib/urls";
+
+const regulation = courses.filter((course) => course.type === "Regulation");
+const application = courses.filter((course) => course.type === "Application");
+const description =
+  "RPAS services from Aboriginal Training Services: exam preparation, flight reviews, applied drone training, and programs delivered with communities and organizations.";
+---
+
+<Base title="Drone and RPAS Services" description={description} path="/services/">
+  <section class="page-intro">
+    <div class="wrap">
+      <h1>Services</h1>
+      <p class="lead">
+        From a first certificate to advanced commercial work, Aboriginal Training Services trains
+        individuals, businesses, government organizations, and Indigenous communities across Canada.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="certification">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Certification training</h2>
+        <p>
+          Preparation for Transport Canada RPAS certificates, taught online at your pace or in
+          person with an instructor.
+        </p>
+      </div>
+      <div class="service-grid">
+        {
+          regulation.map((course) => (
+            <article class="service-card">
+              <h3>
+                <a href={page(`/training/${course.slug}/`)}>{course.name}</a>
+              </h3>
+              <p>
+                {durationLabel(course)} · {course.format === "online" ? "Online" : "In person"} ·{" "}
+                {course.level}
+              </p>
+              <a href={page(`/training/${course.slug}/`)}>Course details</a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="applications" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Applied RPAS training</h2>
+        <p>
+          Field courses for crews who already operate, or are ready to. Sensors, survey methods,
+          and the workflows that turn flights into maps and reports.
+        </p>
+      </div>
+      <div class="service-grid">
+        {
+          application.map((course) => (
+            <article class="service-card">
+              <h3>
+                <a href={page(`/training/${course.slug}/`)}>{course.name}</a>
+              </h3>
+              <p>
+                {durationLabel(course)} · {course.level}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="communities" style="padding-top:0">
+    <div class="wrap prose">
+      <h2>Training with communities and organizations</h2>
+      <p>
+        Courses can be arranged for a community, a company, or an agency. Past work published on
+        the site includes training with Indigenous communities, a partnership with NAIT, and a
+        program with the Construction Foundation of British Columbia.
+      </p>
+      <p>
+        Tell us who is coming, what they need to be able to do, and whether you need aircraft on
+        site. We will reply with dates and pricing. There is no public price list for custom
+        delivery yet.
+      </p>
+      <p>
+        <a class="btn btn-primary" href={page("/contact/?course=custom")}>Plan a custom course</a>
+      </p>
+    </div>
+  </section>
+</Base>
