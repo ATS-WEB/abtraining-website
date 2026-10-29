@@ -108,3 +108,13 @@ The home page reserves two slots the owner fills:
 - The artwork frame on the home page (`#artwork`). Do not drop in Nation-specific art from the portfolio backgrounds. Add an approved file under `public/media/` when you have one.
 
 Official positioning, the ATS and HK partnership, addresses, and the 500+ / 25+ / 100% Indigenous-owned lines come from the ATS & HK brochure and portfolio.
+
+## Design concepts
+
+Three alternate home pages are published for comparison. They are `noindex` and are not the live home.
+
+- `/concepts/a/` Night Sky Command, with a matching header at `/concepts/a/training/`
+- `/concepts/b/` Keepers of the Land, with `/concepts/b/training/`
+- `/concepts/c/` Future Pathway, with `/concepts/c/training/`
+
+The hero clip in `public/media/hero-reel.mp4` is a short silent cut of the previous site’s drone video. It does not play when the visitor asks for reduced motion or data saver.

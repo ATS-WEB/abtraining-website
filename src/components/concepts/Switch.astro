@@ -1,0 +1,23 @@
+---
+import { page } from "../../lib/urls";
+interface Props {
+  current: "a" | "b" | "c";
+}
+const { current } = Astro.props;
+const items = [
+  ["a", "Night Sky"],
+  ["b", "Keepers"],
+  ["c", "Pathway"],
+] as const;
+---
+
+<nav class="switch" aria-label="Design concepts">
+  {
+    items.map(([id, label]) => (
+      <a href={page(`/concepts/${id}/`)} aria-current={current === id ? "page" : undefined}>
+        {label}
+      </a>
+    ))
+  }
+  <a href={page("/")}>Current home</a>
+</nav>
