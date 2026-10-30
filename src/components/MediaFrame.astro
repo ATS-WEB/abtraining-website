@@ -1,0 +1,59 @@
+---
+import type { MediaItem } from "../data/home-media";
+import { asset } from "../lib/urls";
+
+interface Props {
+  item: MediaItem;
+  cover?: boolean;
+  parallax?: boolean;
+  eager?: boolean;
+  id?: string;
+  class?: string;
+}
+
+const { item, cover = false, parallax = false, eager = false, id, class: className } = Astro.props;
+const still = item.kind === "video" ? item.poster : item.kind === "image" ? item.src : null;
+const videoSrc = item.kind === "video" ? item.src : null;
+const stillUrl = still ? asset(still) : null;
+const videoUrl = videoSrc ? asset(videoSrc) : null;
+---
+
+<figure
+  id={id}
+  class:list={["media-frame", `is-${item.kind}`, cover && "is-cover", className]}
+  data-parallax={parallax ? "true" : undefined}
+>
+  <div class="parallax-layer">
+    {
+      stillUrl ? (
+        <img
+          src={stillUrl}
+          alt={item.alt}
+          width={item.width ?? undefined}
+          height={item.height ?? undefined}
+          loading={eager ? "eager" : "lazy"}
+          fetchpriority={eager ? "high" : undefined}
+          decoding="async"
+        />
+      ) : (
+        <div class="media-placeholder" role="img" aria-label={item.alt}></div>
+      )
+    }
+    {
+      videoUrl && (
+        <video
+          muted
+          loop
+          playsinline
+          preload="none"
+          poster={stillUrl ?? undefined}
+          data-src={videoUrl}
+          aria-hidden="true"
+          tabindex="-1"
+        />
+      )
+    }
+  </div>
+  <slot />
+  <figcaption>{item.caption}</figcaption>
+</figure>

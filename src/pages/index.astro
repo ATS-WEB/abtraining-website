@@ -1,34 +1,205 @@
 ---
-import Flight from "../components/Flight.astro";
-import Quiz from "../components/Quiz.astro";
-import Voices from "../components/Voices.astro";
+import MediaFrame from "../components/MediaFrame.astro";
 import WorkMap from "../components/WorkMap.astro";
 import Base from "../layouts/Base.astro";
-import "../styles/experience.css";
+import { business, publishedStats } from "../config/site";
+import { mediaSlot, type MediaId } from "../data/home-media";
+import { voices } from "../data/voices";
+import { durationLabel, formatLabel, getCourse } from "../lib/courses";
 import { page } from "../lib/urls";
+import "../styles/experience.css";
+import "../styles/home.css";
+
+const basic = getCourse("drone-pilot-certificate-basic-online");
+const advancedOnline = getCourse("drone-pilot-certificate-advanced-online");
+const advancedRoom = getCourse("drone-pilot-certificate-advanced-in-person");
+const review = getCourse("flight-review-advanced-and-complex");
+
+if (!basic?.checkoutUrl || !advancedOnline || !advancedRoom || !review) {
+  throw new Error("Home page is missing a catalog course it links to.");
+}
+
+const headline = "A 100% Indigenous owned and operated RPAS Academy";
+const subline = "Indigenous-led. Sky-ready.";
+const words = headline.split(" ");
+
+const steps: { media: MediaId; kicker: string; title: string; detail: string; href: string }[] = [
+  {
+    media: "ground-school",
+    kicker: "01",
+    title: "Basic ground school",
+    detail: `${durationLabel(basic)} · ${formatLabel(basic)}`,
+    href: page(`/training/${basic.slug}/`),
+  },
+  {
+    media: "classroom",
+    kicker: "02",
+    title: "Advanced ground school",
+    detail: `${durationLabel(advancedOnline)} online · ${advancedRoom.duration} in person`,
+    href: page(`/training/${advancedOnline.slug}/`),
+  },
+  {
+    media: "flight-line",
+    kicker: "03",
+    title: "Flight review",
+    detail: `${durationLabel(review)} · ${formatLabel(review)}`,
+    href: page(`/training/${review.slug}/`),
+  },
+  {
+    media: "crew",
+    kicker: "04",
+    title: "Career",
+    detail: "Applied courses and community programs",
+    href: page("/services/"),
+  },
+];
+
+const filmstrip: MediaId[] = ["aerial-gathering", "field", "artwork"];
+const hero = mediaSlot("hero");
 
 const description =
-  "Fly the land with Aboriginal Training Services, a 100% Indigenous owned and operated RPAS academy in Edmonton, in partnership with HK Drone Service.";
+  "A 100% Indigenous owned and operated RPAS academy. Indigenous-led ground school, flight review, and training for communities.";
 ---
 
 <Base
-  title="Aboriginal Training Services | Fly the land"
+  title="Aboriginal Training Services | A 100% Indigenous owned and operated RPAS Academy"
   description={description}
   path="/"
-  overlay={true}
+  bodyClass="home"
 >
-  <Flight />
-  <Quiz />
+  <MediaFrame item={hero} cover parallax eager class="home-hero">
+    <div class="hero-scrim" aria-hidden="true"></div>
+    <div class="hud" aria-hidden="true">
+      <div class="hud-frame"></div>
+      <span class="hud-corner hud-tr"></span>
+      <span class="hud-corner hud-bl"></span>
+      <span class="hud-tag hud-tag-left">ATS</span>
+      <span class="hud-tag hud-tag-right">RPAS</span>
+      <span class="hud-cross"></span>
+      <span class="hud-scan"></span>
+    </div>
+    <div class="home-wrap hero-copy">
+      <h1 class="kinetic">{words.map((word, index) => <span class="kinetic-word" style={`--i:${index}`}>{word}{index < words.length - 1 ? " " : ""}</span>)}</h1>
+      <p class="subline kinetic-sub">{subline}</p>
+      <div class="hero-actions">
+        <a class="cta cta-primary" href={basic.checkoutUrl}>Start ground school</a>
+        <a class="cta cta-ghost" href={page("/contact/")}>Contact</a>
+      </div>
+      <ul class="readout">
+        {
+          publishedStats.map((stat) => (
+            <li>
+              <b>{stat.value}</b>
+              <span>{stat.label}</span>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="partner-line">
+        In partnership with <a href={business.partnerUrl}>{business.partnerName}</a>.
+      </p>
+    </div>
+  </MediaFrame>
+
+  <MediaFrame item={mediaSlot("aerial-river")} cover parallax class="bleed" />
+
+  <section class="home-section" aria-labelledby="path-title">
+    <div class="home-wrap">
+      <div class="section-intro">
+        <h2 id="path-title">Your path</h2>
+      </div>
+      <ol class="path-grid">
+        {
+          steps.map((step) => (
+            <li class="path-card">
+              <MediaFrame item={mediaSlot(step.media)} class="path-photo" />
+              <div class="path-copy">
+                <p class="kicker">{step.kicker}</p>
+                <h3>
+                  <a href={step.href}>{step.title}</a>
+                </h3>
+                <p>{step.detail}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+      <p class="catalog-link">
+        <a href={page("/training/")}>All courses</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="home-section" aria-labelledby="footage-title" style="padding-top:0">
+    <div class="home-wrap section-intro">
+      <h2 id="footage-title">Footage</h2>
+    </div>
+    <div class="filmstrip" tabindex="0" aria-label="Photo slots">
+      {
+        filmstrip.map((id) => (
+          <MediaFrame item={mediaSlot(id)} id={id === "artwork" ? "artwork" : undefined} />
+        ))
+      }
+    </div>
+  </section>
+
+  {
+    voices.length > 0 && (
+      <section class="home-section" id="voices" aria-labelledby="voices-title" style="padding-top:0">
+        <div class="home-wrap">
+          <div class="section-intro">
+            <h2 id="voices-title">Voices</h2>
+          </div>
+          <p class="voice-note">
+            Rated {business.googleRating} from {business.googleReviewCount} Google reviews on the
+            previous website. Quoted as written.
+          </p>
+          <div class="quote-strip" tabindex="0" aria-label="Student reviews">
+            {voices.map((voice) => (
+              <figure class="quote-card">
+                <blockquote>
+                  <p>{voice.quote}</p>
+                </blockquote>
+                <figcaption>
+                  <cite>{voice.name}</cite>
+                  {" — "}
+                  {voice.when}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
   <WorkMap />
-  <Voices />
-  <section class="cta-band">
-    <div class="wrap">
-      <h2>Training for the future.</h2>
-      <p>Ground school is open online. Everything else starts with a conversation.</p>
-      <div class="actions">
-        <a class="btn btn-copper" href={page("/training/")}>All courses</a>
-        <a class="btn btn-on-dark" href={page("/contact/")}>Free consultation</a>
+
+  <section class="summon" aria-labelledby="community-title">
+    <div class="summon-grid">
+      <MediaFrame item={mediaSlot("community")} cover parallax class="summon-photo" />
+      <div class="summon-panel">
+        <h2 id="community-title">Bring a course to your community</h2>
+        <p>Group training, organization programs, and First Nation programs.</p>
+        <a class="cta cta-primary" href={page("/contact/")}>Contact</a>
       </div>
     </div>
   </section>
+
+  <section class="ack" id="land-acknowledgement">
+    <div class="home-wrap">
+      <h2>Land acknowledgement</h2>
+      {
+        business.landAcknowledgement ? (
+          <p>{business.landAcknowledgement}</p>
+        ) : (
+          <p>
+            A land acknowledgement is not published here yet. This space stays empty until
+            Aboriginal Training Services supplies the wording.
+          </p>
+        )
+      }
+    </div>
+  </section>
+  <script src="../scripts/home-motion.ts"></script>
 </Base>
