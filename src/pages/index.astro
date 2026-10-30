@@ -6,7 +6,7 @@ import { business, publishedStats } from "../config/site";
 import { mediaSlot, type MediaId } from "../data/home-media";
 import { voices } from "../data/voices";
 import { durationLabel, formatLabel, getCourse } from "../lib/courses";
-import { page } from "../lib/urls";
+import { asset, page } from "../lib/urls";
 import "../styles/experience.css";
 import "../styles/home.css";
 
@@ -46,7 +46,7 @@ const steps: { media: MediaId; kicker: string; title: string; detail: string; hr
     href: page(`/training/${review.slug}/`),
   },
   {
-    media: "crew",
+    media: "field-crew",
     kicker: "04",
     title: "Career",
     detail: "Applied courses and community programs",
@@ -54,8 +54,26 @@ const steps: { media: MediaId; kicker: string; title: string; detail: string; hr
   },
 ];
 
-const filmstrip: MediaId[] = ["aerial-gathering", "field", "artwork"];
-const hero = mediaSlot("hero");
+const graduates: MediaId[] = ["graduates-field", "graduates-aircraft"];
+const gallery: MediaId[] = [
+  "class-group",
+  "gym-practice",
+  "ground-school",
+  "heavy-lift",
+  "classroom",
+  "indoor-group",
+  "flight-line",
+  "winter-flight",
+  "field-crew",
+  "field-team",
+  "artwork",
+];
+const hero = mediaSlot("survey-oblique");
+const heroAvif = hero.variants.map((variant) => `${asset(variant.avif)} ${variant.width}w`).join(", ");
+const coverSizes = "100vw";
+const cardSizes = "(min-width: 980px) 25vw, (min-width: 720px) 48vw, 92vw";
+const graduateSizes = "(min-width: 840px) 48vw, 92vw";
+const gallerySizes = "(min-width: 1040px) 31vw, (min-width: 720px) 46vw, 92vw";
 
 const description =
   "A 100% Indigenous owned and operated RPAS academy. Indigenous-led ground school, flight review, and training for communities.";
@@ -67,7 +85,17 @@ const description =
   path="/"
   bodyClass="home"
 >
-  <MediaFrame item={hero} cover parallax eager class="home-hero">
+  <link
+    slot="head"
+    rel="preload"
+    as="image"
+    type="image/avif"
+    href={asset("/media/stills/survey-oblique-1600.avif")}
+    imagesrcset={heroAvif}
+    imagesizes={coverSizes}
+    fetchpriority="high"
+  />
+  <MediaFrame item={hero} cover parallax eager grade sizes={coverSizes} class="home-hero">
     <div class="hero-scrim" aria-hidden="true"></div>
     <div class="hud" aria-hidden="true">
       <div class="hud-frame"></div>
@@ -101,7 +129,14 @@ const description =
     </div>
   </MediaFrame>
 
-  <MediaFrame item={mediaSlot("aerial-river")} cover parallax class="bleed" />
+  <MediaFrame
+    item={mediaSlot("winter-flight")}
+    cover
+    parallax
+    grade
+    sizes={coverSizes}
+    class="bleed"
+  />
 
   <section class="home-section" aria-labelledby="path-title">
     <div class="home-wrap">
@@ -112,7 +147,7 @@ const description =
         {
           steps.map((step) => (
             <li class="path-card">
-              <MediaFrame item={mediaSlot(step.media)} class="path-photo" />
+              <MediaFrame item={mediaSlot(step.media)} sizes={cardSizes} class="path-photo" />
               <div class="path-copy">
                 <p class="kicker">{step.kicker}</p>
                 <h3>
@@ -130,18 +165,39 @@ const description =
     </div>
   </section>
 
-  <section class="home-section" aria-labelledby="footage-title" style="padding-top:0">
+  <section class="home-section graduates" aria-labelledby="graduates-title">
     <div class="home-wrap section-intro">
-      <h2 id="footage-title">Footage</h2>
+      <h2 id="graduates-title">Our graduates</h2>
+      <p>Groups after flight training, with their certificates.</p>
     </div>
-    <div class="filmstrip" tabindex="0" aria-label="Photo slots">
+    <div class="graduate-band">
       {
-        filmstrip.map((id) => (
-          <MediaFrame item={mediaSlot(id)} id={id === "artwork" ? "artwork" : undefined} />
+        graduates.map((id) => (
+          <MediaFrame item={mediaSlot(id)} sizes={graduateSizes} />
         ))
       }
     </div>
   </section>
+
+  <section class="home-section" aria-labelledby="gallery-title" style="padding-top:0">
+    <div class="home-wrap section-intro">
+      <h2 id="gallery-title">Gallery</h2>
+      <p>Ground school, indoor practice, and field training.</p>
+    </div>
+    <div class="photo-gallery">
+      {
+        gallery.map((id) => (
+          <MediaFrame
+            item={mediaSlot(id)}
+            id={id === "artwork" ? "artwork" : undefined}
+            sizes={gallerySizes}
+          />
+        ))
+      }
+    </div>
+  </section>
+
+  <MediaFrame item={mediaSlot("footage")} cover parallax grade sizes={coverSizes} class="bleed" />
 
   {
     voices.length > 0 && (
@@ -177,7 +233,14 @@ const description =
 
   <section class="summon" aria-labelledby="community-title">
     <div class="summon-grid">
-      <MediaFrame item={mediaSlot("community")} cover parallax class="summon-photo" />
+      <MediaFrame
+        item={mediaSlot("field-team")}
+        cover
+        parallax
+        grade
+        sizes="(min-width: 980px) 62vw, 100vw"
+        class="summon-photo"
+      />
       <div class="summon-panel">
         <h2 id="community-title">Bring a course to your community</h2>
         <p>Group training, organization programs, and First Nation programs.</p>

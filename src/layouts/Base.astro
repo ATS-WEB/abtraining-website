@@ -47,6 +47,7 @@ const schemas = noindex ? jsonLd : [organizationSchema(), ...jsonLd];
       jsonLd={schemas}
       noindex={noindex}
     />
+    <slot name="head" />
   </head>
   <body class:list={[overlay && "has-overlay-header", bodyClass]}>
     <a class="skip-link" href="#main">Skip to content</a>

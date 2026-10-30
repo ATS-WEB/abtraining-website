@@ -1,0 +1,462 @@
+{
+  "survey-oblique": {
+    "width": 2000,
+    "height": 1500,
+    "src": "/media/stills/survey-oblique-1200.webp",
+    "variants": [
+      {
+        "width": 480,
+        "avif": "/media/stills/survey-oblique-480.avif",
+        "webp": "/media/stills/survey-oblique-480.webp"
+      },
+      {
+        "width": 800,
+        "avif": "/media/stills/survey-oblique-800.avif",
+        "webp": "/media/stills/survey-oblique-800.webp"
+      },
+      {
+        "width": 1200,
+        "avif": "/media/stills/survey-oblique-1200.avif",
+        "webp": "/media/stills/survey-oblique-1200.webp"
+      },
+      {
+        "width": 1600,
+        "avif": "/media/stills/survey-oblique-1600.avif",
+        "webp": "/media/stills/survey-oblique-1600.webp"
+      },
+      {
+        "width": 2000,
+        "avif": "/media/stills/survey-oblique-2000.avif",
+        "webp": "/media/stills/survey-oblique-2000.webp"
+      }
+    ]
+  },
+  "survey-nadir": {
+    "width": 2000,
+    "height": 1500,
+    "src": "/media/stills/survey-nadir-1200.webp",
+    "variants": [
+      {
+        "width": 480,
+        "avif": "/media/stills/survey-nadir-480.avif",
+        "webp": "/media/stills/survey-nadir-480.webp"
+      },
+      {
+        "width": 800,
+        "avif": "/media/stills/survey-nadir-800.avif",
+        "webp": "/media/stills/survey-nadir-800.webp"
+      },
+      {
+        "width": 1200,
+        "avif": "/media/stills/survey-nadir-1200.avif",
+        "webp": "/media/stills/survey-nadir-1200.webp"
+      },
+      {
+        "width": 1600,
+        "avif": "/media/stills/survey-nadir-1600.avif",
+        "webp": "/media/stills/survey-nadir-1600.webp"
+      },
+      {
+        "width": 2000,
+        "avif": "/media/stills/survey-nadir-2000.avif",
+        "webp": "/media/stills/survey-nadir-2000.webp"
+      }
+    ]
+  },
+  "thermal-solar": {
+    "width": 640,
+    "height": 512,
+    "src": "/media/stills/thermal-solar-640.webp",
+    "variants": [
+      {
+        "width": 480,
+        "avif": "/media/stills/thermal-solar-480.avif",
+        "webp": "/media/stills/thermal-solar-480.webp"
+      },
+      {
+        "width": 640,
+        "avif": "/media/stills/thermal-solar-640.avif",
+        "webp": "/media/stills/thermal-solar-640.webp"
+      }
+    ]
+  },
+  "winter-flight": {
+    "width": 1600,
+    "height": 1200,
+    "src": "/media/stills/winter-flight-1200.webp",
+    "variants": [
+      {
+        "width": 480,
+        "avif": "/media/stills/winter-flight-480.avif",
+        "webp": "/media/stills/winter-flight-480.webp"
+      },
+      {
+        "width": 800,
+        "avif": "/media/stills/winter-flight-800.avif",
+        "webp": "/media/stills/winter-flight-800.webp"
+      },
+      {
+        "width": 1200,
+        "avif": "/media/stills/winter-flight-1200.avif",
+        "webp": "/media/stills/winter-flight-1200.webp"
+      },
+      {
+        "width": 1600,
+        "avif": "/media/stills/winter-flight-1600.avif",
+        "webp": "/media/stills/winter-flight-1600.webp"
+      }
+    ]
+  },
+  "graduates-field": {
+    "width": 2000,
+    "height": 1500,
+    "src": "/media/stills/graduates-field-1200.webp",
+    "variants": [
+      {
+        "width": 480,
+        "avif": "/media/stills/graduates-field-480.avif",
+        "webp": "/media/stills/graduates-field-480.webp"
+      },
+      {
+        "width": 800,
+        "avif": "/media/stills/graduates-field-800.avif",
+        "webp": "/media/stills/graduates-field-800.webp"
+      },
+      {
+        "width": 1200,
+        "avif": "/media/stills/graduates-field-1200.avif",
+        "webp": "/media/stills/graduates-field-1200.webp"
+      },
+      {
+        "width": 1600,
+        "avif": "/media/stills/graduates-field-1600.avif",
+        "webp": "/media/stills/graduates-field-1600.webp"
+      },
+      {
+        "width": 2000,
+        "avif": "/media/stills/graduates-field-2000.avif",
+        "webp": "/media/stills/graduates-field-2000.webp"
+      }
+    ]
+  },
+  "graduates-aircraft": {
+    "width": 2000,
+    "height": 1500,
+    "src": "/media/stills/graduates-aircraft-1200.webp",
+    "variants": [
+      {
+        "width": 480,
+        "avif": "/media/stills/graduates-aircraft-480.avif",
+        "webp": "/media/stills/graduates-aircraft-480.webp"
+      },
+      {
+        "width": 800,
+        "avif": "/media/stills/graduates-aircraft-800.avif",
+        "webp": "/media/stills/graduates-aircraft-800.webp"
+      },
+      {
+        "width": 1200,
+        "avif": "/media/stills/graduates-aircraft-1200.avif",
+        "webp": "/media/stills/graduates-aircraft-1200.webp"
+      },
+      {
+        "width": 1600,
+        "avif": "/media/stills/graduates-aircraft-1600.avif",
+        "webp": "/media/stills/graduates-aircraft-1600.webp"
+      },
+      {
+        "width": 2000,
+        "avif": "/media/stills/graduates-aircraft-2000.avif",
+        "webp": "/media/stills/graduates-aircraft-2000.webp"
+      }
+    ]
+  },
+  "ground-school": {
+    "width": 2000,
+    "height": 1500,
+    "src": "/media/stills/ground-school-1200.webp",
+    "variants": [
+      {
+        "width": 480,
+        "avif": "/media/stills/ground-school-480.avif",
+        "webp": "/media/stills/ground-school-480.webp"
+      },
+      {
+        "width": 800,
+        "avif": "/media/stills/ground-school-800.avif",
+        "webp": "/media/stills/ground-school-800.webp"
+      },
+      {
+        "width": 1200,
+        "avif": "/media/stills/ground-school-1200.avif",
+        "webp": "/media/stills/ground-school-1200.webp"
+      },
+      {
+        "width": 1600,
+        "avif": "/media/stills/ground-school-1600.avif",
+        "webp": "/media/stills/ground-school-1600.webp"
+      },
+      {
+        "width": 2000,
+        "avif": "/media/stills/ground-school-2000.avif",
+        "webp": "/media/stills/ground-school-2000.webp"
+      }
+    ]
+  },
+  "classroom": {
+    "width": 2000,
+    "height": 1500,
+    "src": "/media/stills/classroom-1200.webp",
+    "variants": [
+      {
+        "width": 480,
+        "avif": "/media/stills/classroom-480.avif",
+        "webp": "/media/stills/classroom-480.webp"
+      },
+      {
+        "width": 800,
+        "avif": "/media/stills/classroom-800.avif",
+        "webp": "/media/stills/classroom-800.webp"
+      },
+      {
+        "width": 1200,
+        "avif": "/media/stills/classroom-1200.avif",
+        "webp": "/media/stills/classroom-1200.webp"
+      },
+      {
+        "width": 1600,
+        "avif": "/media/stills/classroom-1600.avif",
+        "webp": "/media/stills/classroom-1600.webp"
+      },
+      {
+        "width": 2000,
+        "avif": "/media/stills/classroom-2000.avif",
+        "webp": "/media/stills/classroom-2000.webp"
+      }
+    ]
+  },
+  "flight-line": {
+    "width": 2000,
+    "height": 1500,
+    "src": "/media/stills/flight-line-1200.webp",
+    "variants": [
+      {
+        "width": 480,
+        "avif": "/media/stills/flight-line-480.avif",
+        "webp": "/media/stills/flight-line-480.webp"
+      },
+      {
+        "width": 800,
+        "avif": "/media/stills/flight-line-800.avif",
+        "webp": "/media/stills/flight-line-800.webp"
+      },
+      {
+        "width": 1200,
+        "avif": "/media/stills/flight-line-1200.avif",
+        "webp": "/media/stills/flight-line-1200.webp"
+      },
+      {
+        "width": 1600,
+        "avif": "/media/stills/flight-line-1600.avif",
+        "webp": "/media/stills/flight-line-1600.webp"
+      },
+      {
+        "width": 2000,
+        "avif": "/media/stills/flight-line-2000.avif",
+        "webp": "/media/stills/flight-line-2000.webp"
+      }
+    ]
+  },
+  "field-crew": {
+    "width": 2000,
+    "height": 1500,
+    "src": "/media/stills/field-crew-1200.webp",
+    "variants": [
+      {
+        "width": 480,
+        "avif": "/media/stills/field-crew-480.avif",
+        "webp": "/media/stills/field-crew-480.webp"
+      },
+      {
+        "width": 800,
+        "avif": "/media/stills/field-crew-800.avif",
+        "webp": "/media/stills/field-crew-800.webp"
+      },
+      {
+        "width": 1200,
+        "avif": "/media/stills/field-crew-1200.avif",
+        "webp": "/media/stills/field-crew-1200.webp"
+      },
+      {
+        "width": 1600,
+        "avif": "/media/stills/field-crew-1600.avif",
+        "webp": "/media/stills/field-crew-1600.webp"
+      },
+      {
+        "width": 2000,
+        "avif": "/media/stills/field-crew-2000.avif",
+        "webp": "/media/stills/field-crew-2000.webp"
+      }
+    ]
+  },
+  "class-group": {
+    "width": 2000,
+    "height": 1500,
+    "src": "/media/stills/class-group-1200.webp",
+    "variants": [
+      {
+        "width": 480,
+        "avif": "/media/stills/class-group-480.avif",
+        "webp": "/media/stills/class-group-480.webp"
+      },
+      {
+        "width": 800,
+        "avif": "/media/stills/class-group-800.avif",
+        "webp": "/media/stills/class-group-800.webp"
+      },
+      {
+        "width": 1200,
+        "avif": "/media/stills/class-group-1200.avif",
+        "webp": "/media/stills/class-group-1200.webp"
+      },
+      {
+        "width": 1600,
+        "avif": "/media/stills/class-group-1600.avif",
+        "webp": "/media/stills/class-group-1600.webp"
+      },
+      {
+        "width": 2000,
+        "avif": "/media/stills/class-group-2000.avif",
+        "webp": "/media/stills/class-group-2000.webp"
+      }
+    ]
+  },
+  "gym-practice": {
+    "width": 2000,
+    "height": 1500,
+    "src": "/media/stills/gym-practice-1200.webp",
+    "variants": [
+      {
+        "width": 480,
+        "avif": "/media/stills/gym-practice-480.avif",
+        "webp": "/media/stills/gym-practice-480.webp"
+      },
+      {
+        "width": 800,
+        "avif": "/media/stills/gym-practice-800.avif",
+        "webp": "/media/stills/gym-practice-800.webp"
+      },
+      {
+        "width": 1200,
+        "avif": "/media/stills/gym-practice-1200.avif",
+        "webp": "/media/stills/gym-practice-1200.webp"
+      },
+      {
+        "width": 1600,
+        "avif": "/media/stills/gym-practice-1600.avif",
+        "webp": "/media/stills/gym-practice-1600.webp"
+      },
+      {
+        "width": 2000,
+        "avif": "/media/stills/gym-practice-2000.avif",
+        "webp": "/media/stills/gym-practice-2000.webp"
+      }
+    ]
+  },
+  "indoor-group": {
+    "width": 2000,
+    "height": 1500,
+    "src": "/media/stills/indoor-group-1200.webp",
+    "variants": [
+      {
+        "width": 480,
+        "avif": "/media/stills/indoor-group-480.avif",
+        "webp": "/media/stills/indoor-group-480.webp"
+      },
+      {
+        "width": 800,
+        "avif": "/media/stills/indoor-group-800.avif",
+        "webp": "/media/stills/indoor-group-800.webp"
+      },
+      {
+        "width": 1200,
+        "avif": "/media/stills/indoor-group-1200.avif",
+        "webp": "/media/stills/indoor-group-1200.webp"
+      },
+      {
+        "width": 1600,
+        "avif": "/media/stills/indoor-group-1600.avif",
+        "webp": "/media/stills/indoor-group-1600.webp"
+      },
+      {
+        "width": 2000,
+        "avif": "/media/stills/indoor-group-2000.avif",
+        "webp": "/media/stills/indoor-group-2000.webp"
+      }
+    ]
+  },
+  "heavy-lift": {
+    "width": 1800,
+    "height": 2400,
+    "src": "/media/stills/heavy-lift-1200.webp",
+    "variants": [
+      {
+        "width": 480,
+        "avif": "/media/stills/heavy-lift-480.avif",
+        "webp": "/media/stills/heavy-lift-480.webp"
+      },
+      {
+        "width": 800,
+        "avif": "/media/stills/heavy-lift-800.avif",
+        "webp": "/media/stills/heavy-lift-800.webp"
+      },
+      {
+        "width": 1200,
+        "avif": "/media/stills/heavy-lift-1200.avif",
+        "webp": "/media/stills/heavy-lift-1200.webp"
+      },
+      {
+        "width": 1600,
+        "avif": "/media/stills/heavy-lift-1600.avif",
+        "webp": "/media/stills/heavy-lift-1600.webp"
+      },
+      {
+        "width": 1800,
+        "avif": "/media/stills/heavy-lift-1800.avif",
+        "webp": "/media/stills/heavy-lift-1800.webp"
+      }
+    ]
+  },
+  "field-team": {
+    "width": 2000,
+    "height": 1502,
+    "src": "/media/stills/field-team-1200.webp",
+    "variants": [
+      {
+        "width": 480,
+        "avif": "/media/stills/field-team-480.avif",
+        "webp": "/media/stills/field-team-480.webp"
+      },
+      {
+        "width": 800,
+        "avif": "/media/stills/field-team-800.avif",
+        "webp": "/media/stills/field-team-800.webp"
+      },
+      {
+        "width": 1200,
+        "avif": "/media/stills/field-team-1200.avif",
+        "webp": "/media/stills/field-team-1200.webp"
+      },
+      {
+        "width": 1600,
+        "avif": "/media/stills/field-team-1600.avif",
+        "webp": "/media/stills/field-team-1600.webp"
+      },
+      {
+        "width": 2000,
+        "avif": "/media/stills/field-team-2000.avif",
+        "webp": "/media/stills/field-team-2000.webp"
+      }
+    ]
+  }
+}

@@ -93,49 +93,6 @@
   font-size: 1.05rem;
 }
 
-.media-frame {
-  position: relative;
-  margin: 0;
-  background: #0a1018;
-  overflow: hidden;
-}
-
-.media-frame img,
-.media-placeholder {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  background: #0a1018;
-}
-
-.media-frame video {
-  opacity: 0;
-  background: transparent;
-}
-
-.media-frame video.is-playing {
-  opacity: 1;
-}
-
-.media-frame figcaption {
-  margin: 0;
-  padding: 0.45rem 0.7rem;
-  background: rgba(5, 8, 14, 0.86);
-  color: #f4f7fb;
-  font-size: 0.95rem;
-}
-
-.media-placeholder {
-  aspect-ratio: 16 / 10;
-  background:
-    linear-gradient(180deg, rgba(198, 243, 255, 0.08), transparent 42%),
-    repeating-linear-gradient(90deg, rgba(198, 243, 255, 0.14) 0 1px, transparent 1px 72px),
-    repeating-linear-gradient(0deg, rgba(198, 243, 255, 0.14) 0 1px, transparent 1px 72px),
-    #0a121c;
-  box-shadow: inset 0 0 0 1px rgba(198, 243, 255, 0.28);
-}
-
 .is-cover {
   min-height: 70vh;
   min-height: 70svh;
@@ -144,15 +101,6 @@
 .is-cover .parallax-layer {
   position: absolute;
   inset: -12% 0;
-}
-
-.is-cover img,
-.is-cover video,
-.is-cover .media-placeholder {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
 }
 
 .is-cover figcaption {
@@ -484,27 +432,29 @@
   margin: 1.1rem 0 0;
 }
 
-.filmstrip {
+.graduate-band,
+.photo-gallery {
   display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: min(86vw, 680px);
-  gap: 0.75rem;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding: 0 max(1rem, calc((100% - 1180px) / 2)) 0.4rem;
+  gap: 0.7rem;
 }
 
-.filmstrip:focus-visible {
-  outline-offset: -3px;
+.graduate-band {
+  width: min(1180px, calc(100% - 2rem));
+  margin-inline: auto;
 }
 
-.filmstrip .media-frame {
-  scroll-snap-align: start;
+.graduate-band img,
+.photo-gallery img {
+  aspect-ratio: 3 / 2;
 }
 
-.filmstrip img,
-.filmstrip .media-placeholder {
-  aspect-ratio: 16 / 10;
+.photo-gallery {
+  width: min(1180px, calc(100% - 2rem));
+  margin-inline: auto;
+}
+
+.photo-gallery .media-placeholder {
+  aspect-ratio: 3 / 2;
 }
 
 .quote-strip {
@@ -632,12 +582,25 @@
 }
 
 @media (min-width: 720px) {
-  .path-grid {
+  .path-grid,
+  .photo-gallery {
     grid-template-columns: 1fr 1fr;
   }
 
   .summon-panel {
     padding: 3rem 2rem;
+  }
+}
+
+@media (min-width: 840px) {
+  .graduate-band {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1040px) {
+  .photo-gallery {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -718,7 +681,6 @@
     transform: none !important;
   }
 
-  .filmstrip,
   .quote-strip {
     scroll-snap-type: none;
   }

@@ -57,21 +57,53 @@ if (home) {
     frameId = window.requestAnimationFrame(paintParallax);
   };
 
+  let videoObserver: IntersectionObserver | null = null;
+
+  const stopVideos = () => {
+    videoObserver?.disconnect();
+    videoObserver = null;
+    videos.forEach((video) => disarm(video));
+  };
+
+  const startVideos = () => {
+    if (motion.matches || saveData) {
+      stopVideos();
+      return;
+    }
+    if (videoObserver) return;
+    if (!("IntersectionObserver" in window)) {
+      videos.forEach((video) => arm(video));
+      return;
+    }
+    videoObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const video = entry.target as HTMLVideoElement;
+          if (motion.matches || saveData) {
+            disarm(video);
+            return;
+          }
+          if (entry.isIntersecting) arm(video);
+          else disarm(video);
+        });
+      },
+      { rootMargin: "240px 0px" },
+    );
+    videos.forEach((video) => videoObserver?.observe(video));
+  };
+
   const sync = () => {
-    videos.forEach((video) => arm(video));
-    if (motion.matches) resetParallax();
-    else requestPaint();
+    if (motion.matches) {
+      stopVideos();
+      resetParallax();
+      return;
+    }
+    startVideos();
+    requestPaint();
   };
 
   motion.addEventListener("change", sync);
-  if (!motion.matches) {
-    window.addEventListener("scroll", requestPaint, { passive: true });
-    window.addEventListener("resize", requestPaint, { passive: true });
-    requestPaint();
-  }
-
-  if (!motion.matches && !saveData) {
-    if (document.readyState === "complete") window.setTimeout(sync, 300);
-    else window.addEventListener("load", () => window.setTimeout(sync, 300), { once: true });
-  }
+  window.addEventListener("scroll", requestPaint, { passive: true });
+  window.addEventListener("resize", requestPaint, { passive: true });
+  sync();
 }

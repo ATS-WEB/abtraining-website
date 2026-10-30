@@ -1,7 +1,9 @@
 ---
+import MediaFrame from "../components/MediaFrame.astro";
 import Base from "../layouts/Base.astro";
 import { business } from "../config/site";
 import { courses } from "../data/courses";
+import { mediaSlot, type MediaId } from "../data/home-media";
 import { durationLabel } from "../lib/courses";
 import { page } from "../lib/urls";
 
@@ -26,6 +28,9 @@ const operations = [
   "Remote oilsands and other energy infrastructure monitoring",
   "Remote mining site inspection and monitoring",
 ];
+
+const surveys: MediaId[] = ["survey-nadir", "survey-oblique", "thermal-solar"];
+const surveySizes = "(min-width: 900px) 30vw, (min-width: 700px) 46vw, 92vw";
 
 const custom = [
   "Apprenticeship programs",
@@ -128,6 +133,15 @@ const custom = [
           Core services printed in the ATS and HK brochure. These are operations, not courses with
           a public checkout. Ask {business.partnerName} or the academy for a consultation.
         </p>
+      </div>
+      <h3>Survey and inspection</h3>
+      <p>Nadir and oblique survey frames, and a thermal image of rooftop solar panels.</p>
+      <div class="service-photos">
+        {
+          surveys.map((id) => (
+            <MediaFrame item={mediaSlot(id)} plain sizes={surveySizes} />
+          ))
+        }
       </div>
       <ul class="checklist">
         {operations.map((item) => <li>{item}</li>)}
