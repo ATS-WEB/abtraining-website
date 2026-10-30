@@ -17,18 +17,9 @@ interface Props {
   jsonLd?: Record<string, unknown>[];
   noindex?: boolean;
   overlay?: boolean;
-  bodyClass?: string;
 }
 
-const {
-  title,
-  description,
-  path,
-  jsonLd = [],
-  noindex = false,
-  overlay = false,
-  bodyClass,
-} = Astro.props;
+const { title, description, path, jsonLd = [], noindex = false, overlay = false } = Astro.props;
 const schemas = noindex ? jsonLd : [organizationSchema(), ...jsonLd];
 ---
 
@@ -47,9 +38,8 @@ const schemas = noindex ? jsonLd : [organizationSchema(), ...jsonLd];
       jsonLd={schemas}
       noindex={noindex}
     />
-    <slot name="head" />
   </head>
-  <body class:list={[overlay && "has-overlay-header", bodyClass]}>
+  <body class={overlay ? "has-overlay-header" : undefined}>
     <a class="skip-link" href="#main">Skip to content</a>
     <Header />
     <main id="main">

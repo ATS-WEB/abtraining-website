@@ -608,17 +608,6 @@ a:hover {
   margin-bottom: 0.3rem;
 }
 
-.service-photos {
-  display: grid;
-  gap: 0.9rem;
-  margin: 0 0 1.5rem;
-}
-
-.service-photos img {
-  aspect-ratio: 4 / 3;
-  border-radius: var(--radius);
-}
-
 .why-grid,
 .quote-grid,
 .service-grid,
@@ -935,7 +924,6 @@ textarea {
   .pathway,
   .why-grid,
   .quote-grid,
-  .service-photos,
   .service-grid,
   .post-grid,
   .value-grid {
@@ -953,10 +941,6 @@ textarea {
 }
 
 @media (min-width: 900px) {
-  .service-photos {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
   .hero-grid,
   .detail-top {
     grid-template-columns: 1.4fr 0.8fr;
