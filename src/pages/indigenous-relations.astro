@@ -4,7 +4,7 @@ import { business } from "../config/site";
 import { page } from "../lib/urls";
 
 const description =
-  "How Aboriginal Training Services and HK Drone Service talk about land, data, and the environment, and how drone training serves Indigenous communities.";
+  "Indigenous-led drone work from our academy and HK Drone Service. We map the land, care for the data, and train communities to do this work.";
 ---
 
 <Base title="Indigenous Relations" description={description} path="/indigenous-relations/">
@@ -13,8 +13,8 @@ const description =
       <p class="eyebrow">Indigenous-led</p>
       <h1>Technology in service of the land</h1>
       <p class="lead">
-        {business.tagline}. The companies describe the work as Indigenous-led sustainable drone
-        practice: mapping the land and protecting the environment.
+        We are keepers of the land, the data, and the environment. The flying is Indigenous-led. We
+        map the land, and we protect it.
       </p>
       <p>
         “We are keepers of the land using modern tools to fulfill our responsibility.”
@@ -26,17 +26,20 @@ const description =
     <div class="wrap keepers">
       <article class="keeper">
         <h2>Keepers of the Land</h2>
-        <p>Provide data for decision-makers: resource management, environmental monitoring, and forestry.</p>
+        <p>
+          We put data in the hands of the people who decide: resource management, environmental
+          monitoring, and forestry.
+        </p>
       </article>
       <article class="keeper">
         <h2>Keepers of the Data</h2>
-        <p>Mapping for insight, including 3D models and 2D maps.</p>
+        <p>We map so you can see the land clearly, including 3D models and 2D maps.</p>
       </article>
       <article class="keeper">
         <h2>Keepers of the Environment</h2>
         <p>
-          Protecting through mapping: wildlife habitat, erosion, environmental change, regulatory
-          compliance, and land and environmental stewardship.
+          We protect by mapping. Wildlife habitat, erosion, environmental change, regulatory
+          compliance, and the care of the land.
         </p>
       </article>
     </div>
@@ -44,48 +47,41 @@ const description =
 
   <section class="section" style="padding-top:0">
     <div class="wrap prose">
-      <h2>Where the portfolio says the work is going</h2>
+      <h2>Where we are headed</h2>
       <ul>
-        <li>Building a future workforce through drone training programs.</li>
-        <li>Training Indigenous communities to lead a green-energy future.</li>
-        <li>Bringing people and technology together while protecting the environment.</li>
-        <li>Supporting Indigenous people to champion clean technology.</li>
+        <li>We are training the workforce that will fly this work.</li>
+        <li>We train Indigenous communities to lead a green-energy future.</li>
+        <li>We bring people and technology together, and we protect the environment while we do it.</li>
+        <li>We back Indigenous people who want to champion clean technology.</li>
       </ul>
       <p>
-        The same deck frames a skills gap: Transport Canada certification is required for commercial
-        use, and it names missed chances in land consultation, emergency response, and environmental
-        monitoring. It calls drones a reconciliation tool for Treaty rights and self-determination.
-        That is the company’s wording, not a claim added here.
+        Commercial flying needs a Transport Canada certificate. Without one, communities miss
+        chances in land consultation, emergency response, and environmental monitoring. We see the
+        drone as a reconciliation tool, for Treaty rights and self-determination.
       </p>
-      <h2>How training reaches communities</h2>
+      <h2>How we reach communities</h2>
       <p>
-        The brochure says the ground school has trained 500+ students across Indigenous communities
-        and government, commercial, and industrial sectors. The portfolio says 25+ Indigenous
-        communities have been served across Canada, with First Nations service agreements.
+        Our ground school has trained more than 500 students, in Indigenous communities and in
+        government, commercial, and industrial work. We have served more than 25 Indigenous
+        communities across Canada, with First Nation service agreements.
       </p>
       <p>
-        Custom paths include First Nation training programs, First Nation service agreements, and
-        capacity building. Discounts are offered for those programs.
+        We also build First Nation training programs, First Nation service agreements, and
+        capacity-building programs. Those programs are discounted.
       </p>
     </div>
   </section>
 
-  <section class="section" id="land-acknowledgement" style="padding-top:0">
-    <div class="wrap ack-slot">
-      <h2>Land acknowledgement</h2>
-      {
-        business.landAcknowledgement ? (
+  {
+    business.landAcknowledgement ? (
+      <section class="section" id="land-acknowledgement" style="padding-top:0">
+        <div class="wrap ack-slot">
+          <h2>Land acknowledgement</h2>
           <p>{business.landAcknowledgement}</p>
-        ) : (
-          <p>
-            A land acknowledgement is not printed in the brochure or portfolio supplied for this
-            site. This block is reserved for the wording Aboriginal Training Services chooses to
-            publish. No acknowledgement has been written in its place.
-          </p>
-        )
-      }
-    </div>
-  </section>
+        </div>
+      </section>
+    ) : null
+  }
 
   <section class="cta-band">
     <div class="wrap">

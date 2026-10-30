@@ -4,7 +4,7 @@ import { business, portfolioPartners, publishedStats } from "../config/site";
 import { asset, page } from "../lib/urls";
 
 const description =
-  "Aboriginal Training Services is a 100% Indigenous owned and operated RPAS academy in Edmonton, in partnership with HK Drone Service.";
+  "We are a 100% Indigenous owned and operated RPAS academy in Edmonton, in partnership with HK Drone Service.";
 ---
 
 <Base title="About the Academy" description={description} path="/about/">
@@ -13,12 +13,13 @@ const description =
       <p class="eyebrow">{business.positioning}</p>
       <h1>About Aboriginal Training Services and HK Drone Service</h1>
       <p class="lead">
-        We are a 100% Indigenous owned and operated business. The portfolio calls the two companies
-        together a leading Indigenous aerospace company: the leaders and champions of RPAS
-        technology and innovation.
+        We are a 100% Indigenous owned and operated academy. Together with HK Drone Service, we are
+        a leading Indigenous aerospace company: leaders and champions of RPAS technology and
+        innovation.
       </p>
       <p>
-        Advocate, encourage, and unite Indigenous people and communities to lead the drone industry.
+        We advocate, encourage, and unite Indigenous people and communities to lead the drone
+        industry.
       </p>
     </div>
   </section>
@@ -36,9 +37,7 @@ const description =
         }
       </ul>
       <p class="fine" style="margin-top:0.8rem">
-        500+ students and 25+ Indigenous communities are from the ATS and HK brochure and portfolio.
-        The Google rating on the home page, {business.googleRating} from {business.googleReviewCount}
-        reviews, comes from the previous website.
+        Students give us a {business.googleRating} on Google, across {business.googleReviewCount} reviews.
       </p>
     </div>
   </section>
@@ -48,12 +47,12 @@ const description =
       <figure>
         <img
           src={asset("/media/classroom-crew.webp")}
-          alt="RPAS regulation training group in a classroom, with a slide prepared for the Indian Resource Council of Canada"
+          alt="People seated in a classroom for RPAS regulation training"
           width="1100"
           height="514"
           loading="lazy"
         />
-        <figcaption>Regulation training. The slide in the room was prepared for the Indian Resource Council of Canada.</figcaption>
+        <figcaption>Regulation training with the Indian Resource Council of Canada.</figcaption>
       </figure>
       <figure>
         <img
@@ -63,7 +62,7 @@ const description =
           height="600"
           loading="lazy"
         />
-        <figcaption>Flight line practice outside the academy. From the brochure.</figcaption>
+        <figcaption>Practice on the flight line, outside the academy.</figcaption>
       </figure>
     </div>
   </section>
@@ -73,29 +72,32 @@ const description =
       <article class="value-card">
         <h2>Vision</h2>
         <p>
-          Within Indigenous communities, create leaders, innovators, entrepreneurs, and strong youth.
-          Lead the Canadian RPAS industry while preparing Indigenous entrepreneurs. The portfolio
-          also names large aviation, renewable, and clean technology corporations, and says “our
-          people are the CEOs, presidents, and owners.”
+          In Indigenous communities, we are raising leaders, innovators, entrepreneurs, and strong
+          youth. We mean to lead the Canadian RPAS industry and to prepare Indigenous entrepreneurs.
+          In aviation, renewable energy, and clean technology, our people are the CEOs, presidents,
+          and owners.
         </p>
       </article>
       <article class="value-card">
         <h2>Mission</h2>
-        <p>Train and prepare individuals, organizations, First Nation people, and communities.</p>
+        <p>
+          We train and prepare you. That means individuals, organizations, First Nation people, and
+          communities.
+        </p>
       </article>
       <article class="value-card">
-        <h2>In their words</h2>
+        <h2>The line we work by</h2>
         <p>
           “As keepers of the land, we map it. We protect it. We inspire the next generation.”
         </p>
-        <p>Impact named in the portfolio: jobs, skills, self-determination, and environmental protection.</p>
+        <p>What we are after is jobs, skills, self-determination, and care for the environment.</p>
       </article>
       <article class="value-card">
-        <h2>Where the work sits</h2>
+        <h2>Edmonton and Maskwacis</h2>
         <p>
-          Headquarters in Edmonton, Alberta, with a Maskwacis address for HK Drone Service. The
-          ground school has trained students in Indigenous communities and in government,
-          commercial, and industrial sectors.
+          Our headquarters is in Edmonton. HK Drone Service is in Maskwacis. Ground school has
+          trained students in Indigenous communities, and in government, commercial, and industrial
+          work.
         </p>
       </article>
     </div>
@@ -103,26 +105,25 @@ const description =
 
   <section class="section" style="padding-top:0">
     <div class="wrap prose">
-      <h2>Named in the portfolio</h2>
+      <h2>Who we work with</h2>
       <p>
-        The slide “Traction and Partnerships” lists these organizations. This page does not invent
-        what each relationship includes.
+        We are glad to name these organizations. Ask us what we do with any of them.
       </p>
       <ul>
         {portfolioPartners.map((name) => <li>{name}</li>)}
       </ul>
       <p>
-        Achievements also listed there: DJI Authorized Dealer, active contracts in environmental
-        monitoring and resource sectors, training partnerships with NAIT and Northquest College,
-        and recognition by the Indigenous Business Canada ecosystem.
+        We are a DJI Authorized Dealer. We hold active contracts in environmental monitoring and
+        the resource sector. We train with NAIT and Northquest College. The Indigenous Business
+        Canada ecosystem recognizes this work.
       </p>
       <p>
-        <a href={page("/blog/flying-higher-ats-nait-partnership/")}>NAIT partnership story</a>
+        <a href={page("/blog/flying-higher-ats-nait-partnership/")}>Read the NAIT partnership story</a>
       </p>
-      <h2>Who teaches</h2>
+      <h2>The people students talk about</h2>
       <p>
-        Staff biographies are not in the company materials. Google reviews name Darcy, Olaolu (Ola),
-        Chris, Magid, Milly, and Lena.
+        Students name the people who taught them: Darcy, Olaolu (Ola), Chris, Magid, Milly, and
+        Lena.
       </p>
       <p>
         <a class="btn btn-primary" href={page("/contact/")}>Book a free consultation</a>

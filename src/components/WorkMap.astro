@@ -5,11 +5,12 @@ import { asset } from "../lib/urls";
 
 <section class="work-map" id="map" aria-labelledby="map-title">
   <div class="wrap">
-    <p class="eyebrow">Where the work is named</p>
+    <p class="eyebrow">Where we work</p>
     <h2 id="map-title">Map of our work</h2>
     <p>
-      Only places named in the brochure, the portfolio, or a story on this site. The portfolio’s
-      other community pins are not named, so they are not drawn.
+      The academy is in Edmonton. HK Drone Service is in Maskwacis. In British Columbia we trained
+      with the Construction Foundation of BC. We have also served more than 25 Indigenous
+      communities. A pin goes here only when we can name the place and the work.
     </p>
     <div class="map-layout">
       <div class="map-frame">
@@ -43,15 +44,14 @@ import { asset } from "../lib/urls";
         {
           places.map((place) => (
             <article id={`place-${place.id}`} data-place-card={place.id}>
-              {place.photo ? (
-                <img src={asset(place.photo)} alt={place.photoAlt} width="800" height="450" />
-              ) : (
-                <p class="map-missing">TODO(owner): add a photograph of this project. None was in the files.</p>
-              )}
+              {
+                place.photo && (
+                  <img src={asset(place.photo)} alt={place.photoAlt} width="800" height="450" />
+                )
+              }
               <h3>{place.name}</h3>
               <p class="fine">{place.region}</p>
               <p>{place.story}</p>
-              <p class="fine">Source: {place.source}</p>
             </article>
           ))
         }

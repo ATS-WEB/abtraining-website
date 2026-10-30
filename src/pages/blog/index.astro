@@ -8,7 +8,7 @@ const posts = (await getCollection("blog")).sort((a, b) =>
   a.data.date < b.data.date ? 1 : -1,
 );
 const description =
-  "Stories from Aboriginal Training Services: the NAIT partnership, community drone training, and notes from the RPAS industry.";
+  "Stories from our academy: the NAIT partnership, community drone training, and the RPAS work in front of us.";
 ---
 
 <Base title="Blog" description={description} path="/blog/">
@@ -16,8 +16,8 @@ const description =
     <div class="wrap">
       <h1>Blog</h1>
       <p class="lead">
-        Notes and stories published by Aboriginal Training Services. Each post keeps the summary
-        that was public on the previous site.
+        Stories from the academy. Partnerships, community training, and the work we are doing with
+        drones.
       </p>
     </div>
   </section>

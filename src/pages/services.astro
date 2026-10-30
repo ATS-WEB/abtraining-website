@@ -8,24 +8,7 @@ import { page } from "../lib/urls";
 const regulation = courses.filter((course) => course.type === "Regulation");
 const application = courses.filter((course) => course.type === "Application");
 const description =
-  "Transport Canada drone certificates, custom programs for First Nations and industry, and applied RPAS services from Aboriginal Training Services and HK Drone Service.";
-
-const operations = [
-  "Solar farm inspection",
-  "Wind turbine inspections",
-  "Remote mapping and surveying",
-  "Remote fluid sampling",
-  "Methane gas emission monitoring",
-  "Heavy-lift drone logistics for construction",
-  "Remote search and rescue",
-  "Indigenous consultations",
-  "Underwater search and rescue",
-  "Underwater structure inspection",
-  "Remote aerial gas sampling",
-  "Remote oil and gas rig safety monitoring",
-  "Remote oilsands and other energy infrastructure monitoring",
-  "Remote mining site inspection and monitoring",
-];
+  "Transport Canada drone certificates, custom programs for First Nations and industry, and RPAS services we fly with HK Drone Service.";
 
 const custom = [
   "Apprenticeship programs",
@@ -46,8 +29,8 @@ const custom = [
       <p class="eyebrow">ATS and {business.partnerName}</p>
       <h1>Services</h1>
       <p class="lead">
-        A full-service offer, as the portfolio states it: hardware, training, operations, and data
-        analytics. DJI Authorized Dealer, plus custom Canadian solutions. Free consultation.
+        We cover the hardware, the training, the flying, and the data that comes back. We are a DJI
+        Authorized Dealer, and we build custom Canadian solutions. The first conversation is free.
       </p>
     </div>
   </section>
@@ -56,7 +39,10 @@ const custom = [
     <div class="wrap">
       <div class="section-head">
         <h2>Transport Canada drone certificate training</h2>
-        <p>Basic, Advanced, Level 1 Complex, and flight reviews. Online where a checkout exists.</p>
+        <p>
+          Basic, Advanced, Level 1 Complex, and flight reviews. Register online when a course is
+          open. For the rest, we will set a date with you.
+        </p>
       </div>
       <div class="service-grid">
         {
@@ -81,8 +67,9 @@ const custom = [
       <div class="section-head">
         <h2>Hands-on application training</h2>
         <p>
-          Environmental monitoring, search and rescue, inspection, mapping and surveying, LiDAR,
-          greenhouse gas, methane monitoring, water sampling, and agriculture.
+          After the certificate, we teach the job: environmental monitoring, search and rescue,
+          inspection, mapping and surveying, LiDAR, greenhouse gas and methane, water sampling, and
+          agriculture.
         </p>
       </div>
       <div class="service-grid">
@@ -107,8 +94,9 @@ const custom = [
       <div class="section-head">
         <h2>Custom programs</h2>
         <p>
-          Discounts are offered for group training, organization drone programs, First Nation
-          service agreements, and capacity building. Book a free consultation for dates and price.
+          We build the program around your people. Group training, organization programs, First
+          Nation service agreements, and capacity building are discounted. Tell us the dates and we
+          will talk about price.
         </p>
       </div>
       <ul class="chip-row">
@@ -123,21 +111,27 @@ const custom = [
   <section class="section" id="operations" style="padding-top:0">
     <div class="wrap">
       <div class="section-head">
-        <h2>Drone services with HK</h2>
+        <h2>Flying with HK Drone Service</h2>
         <p>
-          Core services printed in the ATS and HK brochure. These are operations, not courses with
-          a public checkout. Ask {business.partnerName} or the academy for a consultation.
+          These are jobs we take on with HK, not courses you buy online. Call us or HK and we will
+          talk it through.
         </p>
       </div>
-      <ul class="checklist">
-        {operations.map((item) => <li>{item}</li>)}
-      </ul>
-      <h3>Signature aircraft in the portfolio</h3>
       <p>
-        The portfolio describes an eVTOL called KISIK: 3-hour endurance, 200 km BVLOS range,
-        designed and engineered in Canada, Indigenous-led research for environmental stewardship,
-        and described as Transport Canada compliant and remote-territory optimized. A photograph of
-        the aircraft was not in the files, so none is shown.
+        We inspect solar farms and wind turbines. We map and survey remote sites. We sample fluids
+        from a distance, sample gases from the air, and monitor methane emissions. We monitor
+        safety on oil and gas rigs, oilsands and other energy sites, and remote mines.
+      </p>
+      <p>
+        We fly search and rescue. We search underwater, and we inspect underwater structures. We
+        move construction loads with heavy-lift aircraft. We support Indigenous consultations.
+      </p>
+      <h3>KISIK</h3>
+      <p>
+        KISIK is an eVTOL designed and engineered in Canada for remote territory. Three hours of
+        endurance. Two hundred kilometres beyond visual line of sight. The research is
+        Indigenous-led, for environmental stewardship, and the aircraft is Transport Canada
+        compliant.
       </p>
       <p>
         <a class="btn btn-secondary" href={business.partnerUrl}>HK Drone Service</a>
