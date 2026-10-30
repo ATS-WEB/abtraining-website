@@ -1,0 +1,102 @@
+---
+import type { MediaItem } from "../data/home-media";
+import { asset } from "../lib/urls";
+import "../styles/media.css";
+
+interface Props {
+  item: MediaItem;
+  cover?: boolean;
+  parallax?: boolean;
+  eager?: boolean;
+  grade?: boolean;
+  plain?: boolean;
+  id?: string;
+  class?: string;
+  sizes?: string;
+  focus?: string;
+}
+
+const {
+  item,
+  cover = false,
+  parallax = false,
+  eager = false,
+  grade = false,
+  plain = false,
+  id,
+  class: className,
+  sizes = "100vw",
+  focus,
+} = Astro.props;
+
+const still = item.kind === "video" ? item.poster : item.kind === "image" ? item.src : null;
+const videoSrc = item.kind === "video" ? item.src : null;
+const stillUrl = still ? asset(still) : null;
+const videoUrl = videoSrc ? asset(videoSrc) : null;
+const focusValue = focus ?? item.focus;
+const srcset = (key: "avif" | "webp") =>
+  item.variants.map((variant) => `${asset(variant[key])} ${variant.width}w`).join(", ");
+---
+
+<figure
+  id={id}
+  class:list={[
+    "media-frame",
+    `is-${item.kind}`,
+    cover && "is-cover",
+    grade && "is-graded",
+    plain && "is-plain",
+    className,
+  ]}
+  data-parallax={parallax ? "true" : undefined}
+  style={focusValue === "center" ? undefined : `--focus:${focusValue}`}
+>
+  <div class="parallax-layer">
+    {
+      stillUrl && item.variants.length > 0 ? (
+        <picture>
+          <source type="image/avif" srcset={srcset("avif")} sizes={sizes} />
+          <source type="image/webp" srcset={srcset("webp")} sizes={sizes} />
+          <img
+            src={stillUrl}
+            alt={item.alt}
+            width={item.width ?? undefined}
+            height={item.height ?? undefined}
+            sizes={sizes}
+            loading={eager ? "eager" : "lazy"}
+            fetchpriority={eager ? "high" : undefined}
+            decoding="async"
+          />
+        </picture>
+      ) : stillUrl ? (
+        <img
+          src={stillUrl}
+          alt={item.alt}
+          width={item.width ?? undefined}
+          height={item.height ?? undefined}
+          loading={eager ? "eager" : "lazy"}
+          fetchpriority={eager ? "high" : undefined}
+          decoding="async"
+        />
+      ) : (
+        <div class="media-placeholder" role="img" aria-label={item.alt} />
+      )
+    }
+    {
+      videoUrl && (
+        <video
+          muted
+          loop
+          playsinline
+          preload="none"
+          poster={stillUrl ?? undefined}
+          data-src={videoUrl}
+          aria-hidden="true"
+          tabindex="-1"
+        />
+      )
+    }
+  </div>
+  <slot />
+  <figcaption>{item.caption}</figcaption>
+</figure>

@@ -1,0 +1,85 @@
+.media-frame {
+  position: relative;
+  margin: 0;
+  background: #0a1018;
+  overflow: hidden;
+}
+
+.media-frame picture {
+  display: block;
+  margin: 0;
+}
+
+.media-frame img,
+.media-placeholder {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: var(--focus, center);
+  background: #0a1018;
+}
+
+.media-frame video {
+  opacity: 0;
+  background: transparent;
+}
+
+.media-frame video.is-playing {
+  opacity: 1;
+}
+
+.media-frame figcaption {
+  margin: 0;
+  padding: 0.45rem 0.7rem;
+  background: rgba(5, 8, 14, 0.86);
+  color: #f4f7fb;
+  font-size: 0.95rem;
+}
+
+.media-frame.is-plain {
+  background: transparent;
+  border-radius: 16px;
+}
+
+.media-frame.is-plain figcaption {
+  background: transparent;
+  color: var(--ink);
+  padding: 0.5rem 0.1rem 0;
+}
+
+.media-placeholder {
+  aspect-ratio: 16 / 10;
+  background:
+    linear-gradient(180deg, rgba(198, 243, 255, 0.08), transparent 42%),
+    repeating-linear-gradient(90deg, rgba(198, 243, 255, 0.14) 0 1px, transparent 1px 72px),
+    repeating-linear-gradient(0deg, rgba(198, 243, 255, 0.14) 0 1px, transparent 1px 72px),
+    #0a121c;
+  box-shadow: inset 0 0 0 1px rgba(198, 243, 255, 0.28);
+}
+
+.is-cover picture,
+.is-cover img,
+.is-cover video,
+.is-cover .media-placeholder {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.is-graded img,
+.is-graded video {
+  filter: contrast(1.12) saturate(0.7) brightness(0.84);
+}
+
+.is-graded .parallax-layer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(130% 90% at 50% 42%, transparent 20%, rgba(5, 8, 14, 0.38) 100%),
+    linear-gradient(180deg, rgba(7, 16, 28, 0.42) 0%, rgba(7, 16, 28, 0.06) 40%, rgba(5, 8, 14, 0.55) 100%);
+}

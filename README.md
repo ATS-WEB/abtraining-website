@@ -109,4 +109,4 @@ The home page reserves two slots the owner fills:
 
 Official positioning, the ATS and HK partnership, addresses, and the 500+ / 25+ / 100% Indigenous-owned lines come from the ATS & HK brochure and portfolio.
 
-The home page is a scroll flight. It falls back to stacked scenes when motion is reduced, JavaScript is off, or the connection is marked slow. The practice quiz lives in `src/data/quiz.ts`. Map pins live in `src/data/places.ts`. Student quotes and video slots live in `src/data/voices.ts`.
+The home page is a dark cinematic landing page. Owner photographs are AVIF and WebP files in `public/media/stills/`, listed in `src/data/home-media.ts`. The artwork slot stays empty until an approved file is added. Captions do not name people, Nations, or communities. Motion eases off when the visitor asks for reduced motion. The practice quiz lives in `src/data/quiz.ts`. Map pins live in `src/data/places.ts`. Student quotes and video slots live in `src/data/voices.ts`.
