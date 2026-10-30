@@ -11,28 +11,50 @@
   z-index: 4;
   top: 5.6rem;
   right: 1rem;
+  max-width: min(20rem, calc(100vw - 9.5rem));
   margin: 0;
   padding: 0.35rem 0.7rem;
   border-radius: 999px;
   background: rgba(5, 12, 20, 0.82);
   font-size: 0.82rem;
   letter-spacing: 0.08em;
+  line-height: 1.35;
   text-transform: uppercase;
   color: #e7f6ff;
 }
 .flight-pin { position: relative; }
 .flight-card { position: relative; min-height: 100vh; min-height: 100dvh; display: grid; align-items: end; }
-.flight-card img {
+.flight-card::after,
+.flight-shade {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(130% 90% at 50% 42%, transparent 18%, rgba(5, 8, 14, 0.42) 100%),
+    linear-gradient(180deg, rgba(7, 16, 28, 0.4) 0%, rgba(7, 16, 28, 0.06) 38%, rgba(5, 8, 14, 0.55) 100%);
+}
+.flight-shade { display: none; }
+.flight-plate {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  display: block;
+}
+.flight-plate img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
+  max-width: none;
   object-fit: cover;
+  filter: contrast(1.12) saturate(0.7) brightness(0.84);
 }
 .flight-video { display: none; }
 .flight-copy {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   margin: 0 1rem 1.4rem;
   max-width: 40rem;
   padding: 1.1rem 1.15rem 1.2rem;
@@ -54,10 +76,50 @@
   line-height: 0.95;
   color: #fff;
 }
+.flight-card.is-hero .flight-copy {
+  max-width: 48rem;
+}
+.flight-copy h1 {
+  margin: 0 0 0.45rem;
+  font-size: clamp(1.6rem, 4.6vw + 0.35rem, 4.15rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 0.98;
+  text-wrap: balance;
+  color: #fff;
+}
+.flight-accent {
+  color: #9ee7ff;
+}
+.flight-copy .flight-sub {
+  margin: 0 0 0.75rem;
+  color: #d7f6ff;
+  font-family: var(--sans);
+  font-size: clamp(0.78rem, 1.5vw, 1rem);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+.flight-copy h1,
+.flight-copy .flight-sub {
+  animation: flight-reveal 0.85s cubic-bezier(0.16, 0.84, 0.32, 1) both;
+}
+.flight-copy .flight-sub { animation-delay: 0.14s; }
+@keyframes flight-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(0.55rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
 .flight-copy p { margin: 0 0 0.8rem; color: #e7f3f8; }
 .flight-copy a { color: #fff; font-weight: 700; }
 
-.flight[data-mode="live"] { height: 640vh; }
+.flight[data-mode="live"] { height: 880vh; }
 .flight[data-mode="live"] .flight-pin {
   position: sticky;
   top: 0;
@@ -72,6 +134,8 @@
   opacity: 0;
   pointer-events: none;
 }
+.flight[data-mode="live"] .flight-card::after { content: none; }
+.flight[data-mode="live"] .flight-shade { display: block; }
 .flight[data-mode="live"] .flight-video {
   display: block;
   position: absolute;
@@ -80,8 +144,10 @@
   height: 100%;
   object-fit: cover;
   z-index: 1;
+  pointer-events: none;
+  filter: contrast(1.12) saturate(0.7) brightness(0.84);
 }
-.flight[data-mode="live"] .flight-copy { z-index: 2; }
+.flight[data-mode="live"] .flight-copy { z-index: 3; }
 .flight[data-mode="live"] .flight-leg,
 .flight[data-mode="live"] .flight-skip { position: absolute; }
 
@@ -181,7 +247,28 @@
   .voice-grid { grid-template-columns: 1fr 1fr; }
 }
 
+@media (max-width: 700px) {
+  .flight-leg-name { display: none; }
+  .flight-leg {
+    max-width: 8.5rem;
+    text-align: center;
+  }
+}
+
+@media (max-width: 420px) {
+  .flight-leg {
+    max-width: 8.5rem;
+    line-height: 1.35;
+  }
+  .flight-copy h1 {
+    font-size: clamp(1.48rem, 7.2vw, 1.85rem);
+  }
+  .flight-copy .flight-sub { letter-spacing: 0.08em; }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .flight-copy h1,
+  .flight-copy .flight-sub { animation: none; }
   .flight[data-mode="live"] { height: auto; }
   .flight[data-mode="live"] .flight-pin { position: static; height: auto; overflow: visible; }
   .flight[data-mode="live"] .flight-card {
