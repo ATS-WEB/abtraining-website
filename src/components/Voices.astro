@@ -11,9 +11,8 @@ const shown = full ? voices : voices.slice(0, 3);
 
 <section class="voices" id="voices" aria-labelledby="voices-title">
   <div class="wrap">
-    <p class="eyebrow">Voices first</p>
+    <p class="eyebrow">Our students</p>
     <h2 id="voices-title">Students, in their own words</h2>
-    <p>These are Google reviews copied from the previous website. No quote has been rewritten.</p>
     <ul class="career-lines">
       {careerLines.map((line) => <li>{line}</li>)}
     </ul>
@@ -21,13 +20,13 @@ const shown = full ? voices : voices.slice(0, 3);
       {
         shown.map((voice) => (
           <figure class="voice-card">
-            {voice.video ? (
-              <video controls preload="none" poster={voice.poster ? asset(voice.poster) : undefined}>
-                <source src={asset(voice.video)} type="video/mp4" />
-              </video>
-            ) : (
-              <p class="voice-slot">TODO(owner): short video from {voice.name}, with their permission. No footage is on file.</p>
-            )}
+            {
+              voice.video && (
+                <video controls preload="none" poster={voice.poster ? asset(voice.poster) : undefined}>
+                  <source src={asset(voice.video)} type="video/mp4" />
+                </video>
+              )
+            }
             <blockquote>
               <p>{voice.quote}</p>
             </blockquote>

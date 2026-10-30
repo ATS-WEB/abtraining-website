@@ -55,9 +55,9 @@ export const voices: Voice[] = [
   },
 ];
 
-/** Career lines taken from the ATS & HK portfolio. Not placement statistics. */
+/** Aspirations named by the academy. Not placement statistics. */
 export const careerLines = [
-  "Leaders, innovators, entrepreneurs, and strong youth within Indigenous communities.",
-  "Jobs, skills, self-determination, and environmental protection.",
-  "500+ students trained across Indigenous communities, government, and industry.",
+  "We are growing leaders, innovators, entrepreneurs, and strong youth in Indigenous communities.",
+  "The aim is jobs, skills, self-determination, and protection of the environment.",
+  "More than 500 students have trained with us, in Indigenous communities, government, and industry.",
 ] as const;

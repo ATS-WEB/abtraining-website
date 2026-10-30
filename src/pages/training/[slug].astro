@@ -73,14 +73,13 @@ const description = summary(course, 155);
               )
             }
           </p>
-          {
-            price.mode === "usd" && (
-              <p class="fine">
-                Checkout is currently in US dollars. A Canadian dollar price is not listed here
-                until it is confirmed.
-              </p>
-            )
-          }
+            {
+              price.mode === "usd" && (
+                <p class="fine">
+                  Checkout is in US dollars. Ask us if you need the price in Canadian dollars.
+                </p>
+              )
+            }
           <dl>
             <dt>When</dt>
             <dd>
@@ -132,8 +131,8 @@ const description = summary(course, 155);
             <>
               <h2>Exam this course prepares you for</h2>
               <p>
-                The course record lists {course.exam.questions} questions and a {course.exam.minutes}
-                -minute time limit. Transport Canada sets the official exam.
+                You are preparing for an exam of {course.exam.questions} questions, with{" "}
+                {course.exam.minutes} minutes to finish. Transport Canada sets the official exam.
               </p>
             </>
           )

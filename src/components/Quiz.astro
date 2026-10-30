@@ -11,8 +11,8 @@ const levels: QuizLevel[] = ["basic", "advanced"];
     <p class="eyebrow">Can you pass?</p>
     <h2 id="quiz-title">Five questions. Then a course that matches.</h2>
     <p class="quiz-lead">
-      A free practice set from the current Canadian Aviation Regulations and Transport Canada’s
-      drone pages. It is not the Transport Canada exam.
+      Five questions drawn from the current Canadian Aviation Regulations and Transport Canada’s
+      drone pages. This is practice with us. It is not the Transport Canada exam.
     </p>
     <form class="quiz-form" data-endpoint={business.formEndpoint} data-email={business.email}>
       <fieldset>
@@ -56,7 +56,7 @@ const levels: QuizLevel[] = ["basic", "advanced"];
       <ol class="quiz-review" data-review></ol>
       <form class="quiz-mail" hidden>
         <h3>Send this result to the academy</h3>
-        <p>Optional. This uses the same enquiry path as the contact page. Nothing is stored on this website unless a form address is configured.</p>
+        <p>Optional. Send your score and we will write back about how to enrol.</p>
         <label>
           Name
           <input name="name" type="text" autocomplete="name" required />
@@ -114,7 +114,7 @@ const levels: QuizLevel[] = ["basic", "advanced"];
         const link = document.createElement("a");
         link.href = question.sourceUrl;
         link.textContent = question.source;
-        source.append("Source: ", link);
+        source.append(link);
         item.append(title, why, source);
         review?.append(item);
       });

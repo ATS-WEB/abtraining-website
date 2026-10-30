@@ -12,8 +12,8 @@ const description =
     <div class="wrap">
       <h1>Contact</h1>
       <p class="lead">
-        Book a free consultation, ask about a course date, or talk through a First Nation or group
-        program. Discounts are available for group, organization, and capacity-building work.
+        Book a free consultation. Ask about a course date. Or plan a First Nation or group program
+        with us. Group, organization, and capacity-building work is discounted.
       </p>
     </div>
   </section>
@@ -46,13 +46,13 @@ const description =
           <a href={`mailto:${business.partnerEmail}`}>{business.partnerEmail}</a>
         </p>
         <p>
-          Prefer to write directly? Email
+          You can also email
           <a href={`mailto:${business.email}`}>{business.email}</a>
-          and include the course name.
+          and name the course.
         </p>
         <p>
-          Current students can
-          <a href={business.studentPortal}>sign in on Thinkific</a>.
+          Already studying with us?
+          <a href={business.studentPortal}>Sign in on Thinkific</a>.
         </p>
       </div>
       <form
@@ -66,8 +66,8 @@ const description =
         <p class="fine" id="form-help">
           {
             business.formEndpoint
-              ? "This form is sent to the address configured for the site."
-              : "This form opens your email app with the message filled in. Nothing is stored on this website."
+              ? "Send this and we will reply by email."
+              : "This opens your email app with your message ready to send. We read it when you send it."
           }
         </p>
         <label>

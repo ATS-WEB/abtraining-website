@@ -43,7 +43,7 @@ export function priceLabel(course: Course): { text: string; mode: PriceMode } {
   if (course.listedUsd != null && course.checkoutUrl) {
     return { text: `US$${course.listedUsd} at checkout`, mode: "usd" };
   }
-  return { text: "Contact us for pricing", mode: "ask" };
+  return { text: "Ask us for a price", mode: "ask" };
 }
 
 export function formatIsoDate(iso: string): string {
@@ -66,7 +66,7 @@ export function dateLabel(course: Course): { text: string; known: boolean } {
   if (course.format === "online" && /self-paced/i.test(course.duration)) {
     return { text: "Self-paced — start anytime", known: true };
   }
-  return { text: "Contact us for next dates", known: false };
+  return { text: "Ask us for the next date", known: false };
 }
 
 export function timeRequired(duration: string): string | undefined {
